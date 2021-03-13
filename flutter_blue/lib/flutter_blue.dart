@@ -13,6 +13,7 @@ export 'src/method_channel_flutter_blue.dart';
 import 'dart:io';
 
 import 'package:flutter_blue_linux/flutter_blue_linux.dart';
+import 'package:flutter_blue_windows/flutter_blue_windows.dart';
 import 'package:flutter_blue_platform_interface/flutter_blue_platform_interface.dart';
 
 import 'src/method_channel_flutter_blue.dart';
@@ -32,6 +33,8 @@ class FlutterBlue {
       // with a non-default instance.
       if (Platform.isLinux) {
         FlutterBluePlatform.instance = FlutterBlueLinux();
+      } else  if (Platform.isLinux) {
+        FlutterBluePlatform.instance = FlutterBlueWindows();
       } else {
         FlutterBluePlatform.instance = MethodChannelFlutterBlue.instance;
       }

@@ -18,6 +18,7 @@ dependencies:
   collection: ^1.14.13
   meta: ^1.2.3
   flutter_blue_linux: ^0.8.0  
+  flutter_blue_windows: ^0.8.0  
   flutter_blue_platform_interface: ^0.8.0
   
 dev_dependencies:
@@ -33,6 +34,8 @@ dependency_overrides:
     path: ../flutter_blue_platform_interface
   flutter_blue_linux:
     path: ../flutter_blue_linux
+  flutter_blue_windows:
+    path: ../flutter_blue_windows
 
 flutter:
   plugin:
@@ -45,6 +48,7 @@ flutter:
       macos:
         pluginClass: FlutterBluePlugin
       windows:
-        pluginClass: FlutterBluePlugin
+        default_package: flutter_blue_windows
+        pluginClass: FlutterBlueWindowsPlugin
       linux:
         default_package: flutter_blue_linux
