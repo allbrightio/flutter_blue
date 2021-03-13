@@ -13,8 +13,12 @@ class BluetoothService {
   final List<BluetoothCharacteristic> characteristics;
   final List<BluetoothService> includedServices;
 
-  BluetoothService(this.uuid, this.deviceId, this.isPrimary,
-      this.characteristics, this.includedServices);
+  BluetoothService(
+      {required this.uuid,
+      required this.deviceId,
+      required this.isPrimary,
+      required this.characteristics,
+      required this.includedServices});
 
   @override
   String toString() {

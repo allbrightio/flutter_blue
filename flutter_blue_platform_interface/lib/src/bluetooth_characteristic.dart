@@ -2,8 +2,6 @@
 // All rights reserved. Use of this source code is governed by a
 // BSD-style license that can be found in the LICENSE file.
 
-import 'package:rxdart/rxdart.dart';
-
 import 'bluetooth_descriptor.dart';
 import 'flutter_blue_platform.dart';
 import 'guid.dart';
@@ -16,11 +14,13 @@ abstract class BluetoothCharacteristic {
   final CharacteristicProperties properties;
   final List<BluetoothDescriptor> descriptors;
 
-  BluetoothCharacteristic(this.uuid, this.deviceId, this.serviceUuid,
-      this.secondaryServiceUuid, this.properties, this.descriptors,
-      {List<int>? value})
-      : _value =
-            value != null ? BehaviorSubject.seeded(value) : BehaviorSubject();
+  BluetoothCharacteristic(
+      {required this.uuid,
+      required this.deviceId,
+      required this.serviceUuid,
+      required this.secondaryServiceUuid,
+      required this.properties,
+      required this.descriptors});
 
   bool get isNotifying {
     try {
@@ -33,18 +33,9 @@ abstract class BluetoothCharacteristic {
     }
   }
 
-  BehaviorSubject<List<int>> _value;
-  Stream<List<int>?> get value => Rx.merge([
-        _value.stream,
-        _onValueChangedStream,
-      ]);
+  Stream<List<int>?> get value;
 
-  List<int>? get lastValue => _value.value;
-
-  Stream<BluetoothCharacteristic> get _onCharacteristicChangedStream;
-
-  Stream<List<int>?> get _onValueChangedStream =>
-      _onCharacteristicChangedStream.map((c) => c.lastValue);
+  List<int>? get lastValue;
 
   /// Retrieves the value of the characteristic
   Future<List<int>> read();
@@ -58,11 +49,6 @@ abstract class BluetoothCharacteristic {
 
   /// Sets notifications or indications for the value of a specified characteristic
   Future<bool> setNotifyValue(bool notify);
-
-  @override
-  String toString() {
-    return 'BluetoothCharacteristic{uuid: $uuid, deviceId: $deviceId, serviceUuid: $serviceUuid, secondaryServiceUuid: $secondaryServiceUuid, properties: $properties, descriptors: $descriptors, value: ${_value.value}';
-  }
 }
 
 enum CharacteristicWriteType { withResponse, withoutResponse }

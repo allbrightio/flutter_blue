@@ -13,10 +13,16 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_blue:
-    path: ../flutter_blue
   #e2e: ^0.2.1
   #flutter_driver:
   #  sdk: flutter
 
 flutter:
   uses-material-design: true
+
+
+dependency_overrides:
+  flutter_blue:
+    path: ../flutter_blue
+  flutter_blue_platform_interface:
+    path: ../flutter_blue_platform_interface

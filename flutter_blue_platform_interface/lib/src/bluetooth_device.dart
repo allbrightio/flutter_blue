@@ -2,8 +2,6 @@
 // All rights reserved. Use of this source code is governed by a
 // BSD-style license that can be found in the LICENSE file.
 
-import 'package:rxdart/rxdart.dart';
-
 import 'bluetooth_service.dart';
 import 'flutter_blue_platform.dart';
 
@@ -12,10 +10,9 @@ abstract class BluetoothDevice {
   final String name;
   final BluetoothDeviceType type;
 
-  BehaviorSubject<bool> _isDiscoveringServices = BehaviorSubject.seeded(false);
+  BluetoothDevice({required this.id, required this.name, required this.type});
 
-  BluetoothDevice(this.id, this.name, this.type);
-  Stream<bool> get isDiscoveringServices => _isDiscoveringServices.stream;
+  Stream<bool> get isDiscoveringServices;
 
   /// Establishes a connection to the Bluetooth Device.
   Future<void> connect({
@@ -25,9 +22,6 @@ abstract class BluetoothDevice {
 
   /// Cancels connection to the Bluetooth Device
   Future disconnect();
-
-  BehaviorSubject<List<BluetoothService>> _services =
-      BehaviorSubject.seeded([]);
 
   /// Discovers services offered by the remote device as well as their characteristics and descriptors
   Future<List<BluetoothService>> discoverServices();
@@ -49,21 +43,6 @@ abstract class BluetoothDevice {
   /// Indicates whether the Bluetooth Device can send a write without response
   Future<bool> get canSendWriteWithoutResponse =>
       new Future.error(new UnimplementedError());
-
-  @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-      other is BluetoothDevice &&
-          runtimeType == other.runtimeType &&
-          id == other.id;
-
-  @override
-  int get hashCode => id.hashCode;
-
-  @override
-  String toString() {
-    return 'BluetoothDevice{id: $id, name: $name, type: $type, isDiscoveringServices: ${_isDiscoveringServices.value}, _services: ${_services.value}';
-  }
 }
 
 enum BluetoothDeviceType { unknown, classic, le, dual }

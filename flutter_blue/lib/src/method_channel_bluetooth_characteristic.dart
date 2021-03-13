@@ -2,15 +2,13 @@
 // All rights reserved. Use of this source code is governed by a
 // BSD-style license that can be found in the LICENSE file.
 
-part of flutter_blue;
+import 'package:flutter_blue_platform_interface/flutter_blue_platform_interface.dart';
+import 'package:rxdart/rxdart.dart';
+import '../gen/flutterblue.pb.dart' as protos;
+import 'method_channel_bluetooth_descriptor.dart';
+import 'method_channel_flutter_blue.dart';
 
-class BluetoothCharacteristic {
-  final Guid uuid;
-  final DeviceIdentifier deviceId;
-  final Guid serviceUuid;
-  final Guid? secondaryServiceUuid;
-  final CharacteristicProperties properties;
-  final List<BluetoothDescriptor> descriptors;
+class MethodChannelBluetoothCharacteristic extends BluetoothCharacteristic {
   bool get isNotifying {
     try {
       var cccd =
@@ -30,33 +28,39 @@ class BluetoothCharacteristic {
 
   List<int>? get lastValue => _value.value;
 
-  BluetoothCharacteristic.fromProto(protos.BluetoothCharacteristic p)
-      : uuid = new Guid(p.uuid),
-        deviceId = new DeviceIdentifier(p.remoteId),
-        serviceUuid = new Guid(p.serviceUuid),
-        secondaryServiceUuid = (p.secondaryServiceUuid.length > 0)
-            ? new Guid(p.secondaryServiceUuid)
-            : null,
-        descriptors = p.descriptors
-            .map((d) => new BluetoothDescriptor.fromProto(d))
-            .toList(),
-        properties = new CharacteristicProperties.fromProto(p.properties),
-        _value = BehaviorSubject.seeded(p.value);
+  MethodChannelBluetoothCharacteristic.fromProto(
+      protos.BluetoothCharacteristic p)
+      : this._value = BehaviorSubject.seeded(p.value),
+        super(
+          uuid: new Guid(p.uuid),
+          deviceId: new DeviceIdentifier(p.remoteId),
+          serviceUuid: new Guid(p.serviceUuid),
+          secondaryServiceUuid: (p.secondaryServiceUuid.length > 0)
+              ? new Guid(p.secondaryServiceUuid)
+              : null,
+          descriptors: p.descriptors
+              .map((d) => new MethodChannelBluetoothDescriptor.fromProto(d))
+              .toList(),
+          properties:
+              MethodChannelCharacteristicProperties.fromProto(p.properties),
+        );
 
-  Stream<BluetoothCharacteristic> get _onCharacteristicChangedStream =>
-      FlutterBlue.instance._methodStream
-          .where((m) => m.method == "OnCharacteristicChanged")
-          .map((m) => m.arguments)
-          .map(
-              (buffer) => new protos.OnCharacteristicChanged.fromBuffer(buffer))
-          .where((p) => p.remoteId == deviceId.toString())
-          .map((p) => new BluetoothCharacteristic.fromProto(p.characteristic))
-          .where((c) => c.uuid == uuid)
-          .map((c) {
-        // Update the characteristic with the new values
-        _updateDescriptors(c.descriptors);
-        return c;
-      });
+  Stream<MethodChannelBluetoothCharacteristic>
+      get _onCharacteristicChangedStream =>
+          MethodChannelFlutterBlue.instance.methodStream
+              .where((m) => m.method == "OnCharacteristicChanged")
+              .map((m) => m.arguments)
+              .map((buffer) =>
+                  new protos.OnCharacteristicChanged.fromBuffer(buffer))
+              .where((p) => p.remoteId == deviceId.toString())
+              .map((p) => new MethodChannelBluetoothCharacteristic.fromProto(
+                  p.characteristic))
+              .where((c) => c.uuid == uuid)
+              .map((c) {
+            // Update the characteristic with the new values
+            _updateDescriptors(c.descriptors);
+            return c;
+          });
 
   Stream<List<int>?> get _onValueChangedStream =>
       _onCharacteristicChangedStream.map((c) => c.lastValue);
@@ -65,7 +69,7 @@ class BluetoothCharacteristic {
     for (var d in descriptors) {
       for (var newD in newDescriptors) {
         if (d.uuid == newD.uuid) {
-          d._value.add(newD.lastValue);
+          (d as MethodChannelBluetoothDescriptor).addValue(newD.lastValue);
         }
       }
     }
@@ -77,13 +81,13 @@ class BluetoothCharacteristic {
       ..remoteId = deviceId.toString()
       ..characteristicUuid = uuid.toString()
       ..serviceUuid = serviceUuid.toString();
-    FlutterBlue.instance._log(LogLevel.info,
+    MethodChannelFlutterBlue.instance.log(LogLevel.info,
         'remoteId: ${deviceId.toString()} characteristicUuid: ${uuid.toString()} serviceUuid: ${serviceUuid.toString()}');
 
-    await FlutterBlue.instance._channel
+    await MethodChannelFlutterBlue.instance.channel
         .invokeMethod('readCharacteristic', request.writeToBuffer());
 
-    return FlutterBlue.instance._methodStream
+    return MethodChannelFlutterBlue.instance.methodStream
         .where((m) => m.method == "ReadCharacteristicResponse")
         .map((m) => m.arguments)
         .map((buffer) =>
@@ -118,14 +122,14 @@ class BluetoothCharacteristic {
           protos.WriteCharacteristicRequest_WriteType.valueOf(type.index)!
       ..value = value;
 
-    var result = await FlutterBlue.instance._channel
+    var result = await MethodChannelFlutterBlue.instance.channel
         .invokeMethod('writeCharacteristic', request.writeToBuffer());
 
     if (type == CharacteristicWriteType.withoutResponse) {
       return result;
     }
 
-    return FlutterBlue.instance._methodStream
+    return MethodChannelFlutterBlue.instance.methodStream
         .where((m) => m.method == "WriteCharacteristicResponse")
         .map((m) => m.arguments)
         .map((buffer) =>
@@ -150,10 +154,10 @@ class BluetoothCharacteristic {
       ..characteristicUuid = uuid.toString()
       ..enable = notify;
 
-    await FlutterBlue.instance._channel
+    await MethodChannelFlutterBlue.instance.channel
         .invokeMethod('setNotification', request.writeToBuffer());
 
-    return FlutterBlue.instance._methodStream
+    return MethodChannelFlutterBlue.instance.methodStream
         .where((m) => m.method == "SetNotificationResponse")
         .map((m) => m.arguments)
         .map((buffer) => new protos.SetNotificationResponse.fromBuffer(buffer))
@@ -162,7 +166,8 @@ class BluetoothCharacteristic {
             (p.characteristic.uuid == request.characteristicUuid) &&
             (p.characteristic.serviceUuid == request.serviceUuid))
         .first
-        .then((p) => new BluetoothCharacteristic.fromProto(p.characteristic))
+        .then((p) => new MethodChannelBluetoothCharacteristic.fromProto(
+            p.characteristic))
         .then((c) {
       _updateDescriptors(c.descriptors);
       return (c.isNotifying == notify);
@@ -175,47 +180,18 @@ class BluetoothCharacteristic {
   }
 }
 
-enum CharacteristicWriteType { withResponse, withoutResponse }
-
-@immutable
-class CharacteristicProperties {
-  final bool broadcast;
-  final bool read;
-  final bool writeWithoutResponse;
-  final bool write;
-  final bool notify;
-  final bool indicate;
-  final bool authenticatedSignedWrites;
-  final bool extendedProperties;
-  final bool notifyEncryptionRequired;
-  final bool indicateEncryptionRequired;
-
-  CharacteristicProperties(
-      {this.broadcast = false,
-      this.read = false,
-      this.writeWithoutResponse = false,
-      this.write = false,
-      this.notify = false,
-      this.indicate = false,
-      this.authenticatedSignedWrites = false,
-      this.extendedProperties = false,
-      this.notifyEncryptionRequired = false,
-      this.indicateEncryptionRequired = false});
-
-  CharacteristicProperties.fromProto(protos.CharacteristicProperties p)
-      : broadcast = p.broadcast,
-        read = p.read,
-        writeWithoutResponse = p.writeWithoutResponse,
-        write = p.write,
-        notify = p.notify,
-        indicate = p.indicate,
-        authenticatedSignedWrites = p.authenticatedSignedWrites,
-        extendedProperties = p.extendedProperties,
-        notifyEncryptionRequired = p.notifyEncryptionRequired,
-        indicateEncryptionRequired = p.indicateEncryptionRequired;
-
-  @override
-  String toString() {
-    return 'CharacteristicProperties{broadcast: $broadcast, read: $read, writeWithoutResponse: $writeWithoutResponse, write: $write, notify: $notify, indicate: $indicate, authenticatedSignedWrites: $authenticatedSignedWrites, extendedProperties: $extendedProperties, notifyEncryptionRequired: $notifyEncryptionRequired, indicateEncryptionRequired: $indicateEncryptionRequired}';
-  }
+class MethodChannelCharacteristicProperties {
+  static CharacteristicProperties fromProto(
+          protos.CharacteristicProperties p) =>
+      CharacteristicProperties(
+          broadcast: p.broadcast,
+          read: p.read,
+          writeWithoutResponse: p.writeWithoutResponse,
+          write: p.write,
+          notify: p.notify,
+          indicate: p.indicate,
+          authenticatedSignedWrites: p.authenticatedSignedWrites,
+          extendedProperties: p.extendedProperties,
+          notifyEncryptionRequired: p.notifyEncryptionRequired,
+          indicateEncryptionRequired: p.indicateEncryptionRequired);
 }

@@ -2,22 +2,17 @@
 // All rights reserved. Use of this source code is governed by a
 // BSD-style license that can be found in the LICENSE file.
 
-library flutter_blue;
+export 'package:flutter_blue_platform_interface/src/bluetooth_characteristic.dart';
+export 'package:flutter_blue_platform_interface/src/bluetooth_descriptor.dart';
+export 'package:flutter_blue_platform_interface/src/bluetooth_device.dart';
+export 'package:flutter_blue_platform_interface/src/bluetooth_service.dart';
+export 'package:flutter_blue_platform_interface/src/flutter_blue_platform.dart';
 
-import 'dart:async';
+export 'src/method_channel_flutter_blue.dart';
 
-import 'package:collection/collection.dart';
-import 'package:convert/convert.dart';
-import 'package:flutter/services.dart';
-import 'package:meta/meta.dart';
-import 'package:rxdart/rxdart.dart';
+import 'package:flutter_blue_platform_interface/flutter_blue_platform_interface.dart';
+import 'src/method_channel_flutter_blue.dart';
 
-import 'gen/flutterblue.pb.dart' as protos;
-
-part 'src/bluetooth_characteristic.dart';
-part 'src/bluetooth_descriptor.dart';
-part 'src/bluetooth_device.dart';
-part 'src/bluetooth_service.dart';
-part 'src/constants.dart';
-part 'src/flutter_blue.dart';
-part 'src/guid.dart';
+class FlutterBlue {
+  static FlutterBluePlatform get instance => MethodChannelFlutterBlue.instance;
+}
