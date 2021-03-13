@@ -1,7 +1,6 @@
-import 'package:plugin_platform_interface/plugin_platform_interface.dart';
-
-abstract class FlutterBluePlatform extends PlatformInterface {
-  FlutterBluePlatform() : super(token: _token);
-
-  static final Object _token = Object();
-}
+export 'src/bluetooth_characteristic.dart';
+export 'src/bluetooth_descriptor.dart';
+export 'src/bluetooth_device.dart';
+export 'src/bluetooth_service.dart';
+export 'src/flutter_blue_platform.dart';
+export 'src/guid.dart';
