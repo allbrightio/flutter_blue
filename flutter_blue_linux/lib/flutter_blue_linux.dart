@@ -16,8 +16,10 @@ class FlutterBlueLinux extends FlutterBluePlatform {
   BlueZAdapter? _bluezAdapter;
 
   final _stopScanPill = new PublishSubject();
+  final _isScanning = BehaviorSubject.seeded(false);
+  final _scanResults = BehaviorSubject<List<ScanResult>>.seeded([]);
 
-  /// Registers this class as the default instance of [UrlLauncherPlatform].
+  /// Registers this class as the default instance of [FlutterBluePlatform].
   static void registerWith(dynamic registrar) {
     FlutterBluePlatform.instance = FlutterBlueLinux();
   }
@@ -25,9 +27,12 @@ class FlutterBlueLinux extends FlutterBluePlatform {
   FlutterBlueLinux() {
     _setLogLevelIfAvailable();
     _bluezClient = BlueZClient();
+
+    // TODO handle init / dispose
+    _init();
   }
 
-  Future<void> init() async {
+  Future<void> _init() async {
     await _bluezClient.connect();
     if (_bluezClient.adapters.isEmpty) {
       print('No Bluetooth adapters found');
@@ -36,7 +41,7 @@ class FlutterBlueLinux extends FlutterBluePlatform {
     }
   }
 
-  Future<void> dispose() async {
+  Future<void> _dispose() async {
     _bluezClient.close();
   }
 
@@ -52,12 +57,13 @@ class FlutterBlueLinux extends FlutterBluePlatform {
           .toList();
 
   /// Checks whether the device supports Bluetooth
+  @override
   Future<bool> get isAvailable async => _bluezAdapter != null;
 
   /// Checks if Bluetooth functionality is turned on
+  @override
   Future<bool> get isOn async => _bluezAdapter != null;
 
-  BehaviorSubject<bool> _isScanning = BehaviorSubject.seeded(false);
   @override
   Stream<bool> get isScanning => _isScanning.stream;
 
@@ -112,8 +118,6 @@ class FlutterBlueLinux extends FlutterBluePlatform {
 
     yield* Stream.fromIterable(_scanResults.value!);
   }
-
-  BehaviorSubject<List<ScanResult>> _scanResults = BehaviorSubject.seeded([]);
 
   @override
   Stream<List<ScanResult>> get scanResults => _scanResults.stream;

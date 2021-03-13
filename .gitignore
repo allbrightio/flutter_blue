@@ -14,3 +14,5 @@ build/
 .fvm/
 .flutter-plugins
 .flutter-plugins-dependencies
+
+bluez.dart

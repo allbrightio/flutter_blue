@@ -10,8 +10,7 @@ flutter:
       linux:
         fileName: flutter_blue_linux.dart
         dartPluginClass: FlutterBlueLinux
-
-
+        pluginClass: none
 
 environment:
   sdk: ">=2.12.0 <3.0.0"
@@ -37,6 +36,9 @@ dev_dependencies:
   #  sdk: flutter
 
 dependency_overrides:
+  bluez:
+    path: ../bluez.dart
   flutter_blue_platform_interface:
     path: ../flutter_blue_platform_interface
+  
 
