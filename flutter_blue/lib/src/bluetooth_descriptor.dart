@@ -12,10 +12,10 @@ class BluetoothDescriptor {
   final Guid serviceUuid;
   final Guid characteristicUuid;
 
-  BehaviorSubject<List<int>> _value;
-  Stream<List<int>> get value => _value.stream;
+  BehaviorSubject<List<int>?> _value;
+  Stream<List<int>?> get value => _value.stream;
 
-  List<int> get lastValue => _value.value;
+  List<int>? get lastValue => _value.value;
 
   BluetoothDescriptor.fromProto(protos.BluetoothDescriptor p)
       : uuid = new Guid(p.uuid),
@@ -78,12 +78,12 @@ class BluetoothDescriptor {
         .then((success) => (!success)
             ? throw new Exception('Failed to write the descriptor')
             : null)
-        .then((_) => _value.add(value))
+        .then(((_) => _value.add(value)))
         .then((_) => null);
   }
 
   @override
   String toString() {
-    return 'BluetoothDescriptor{uuid: $uuid, deviceId: $deviceId, serviceUuid: $serviceUuid, characteristicUuid: $characteristicUuid, value: ${_value?.value}}';
+    return 'BluetoothDescriptor{uuid: $uuid, deviceId: $deviceId, serviceUuid: $serviceUuid, characteristicUuid: $characteristicUuid, value: ${_value.value}}';
   }
 }

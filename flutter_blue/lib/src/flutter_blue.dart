@@ -17,7 +17,7 @@ class FlutterBlue {
     _channel.setMethodCallHandler((MethodCall call) {
       _methodStreamController.add(call);
       return;
-    });
+    } as Future<dynamic> Function(MethodCall)?);
 
     _setLogLevelIfAvailable();
   }
@@ -91,7 +91,7 @@ class FlutterBlue {
     ScanMode scanMode = ScanMode.lowLatency,
     List<Guid> withServices = const [],
     List<Guid> withDevices = const [],
-    Duration timeout,
+    Duration? timeout,
     bool allowDuplicates = false,
   }) async* {
     var settings = protos.ScanSettings.create()
@@ -132,7 +132,7 @@ class FlutterBlue {
         .map((buffer) => new protos.ScanResult.fromBuffer(buffer))
         .map((p) {
       final result = new ScanResult.fromProto(p);
-      final list = _scanResults.value;
+      final list = _scanResults.value!;
       int index = list.indexOf(result);
       if (index != -1) {
         list[index] = result;
@@ -156,7 +156,7 @@ class FlutterBlue {
     ScanMode scanMode = ScanMode.lowLatency,
     List<Guid> withServices = const [],
     List<Guid> withDevices = const [],
-    Duration timeout,
+    Duration? timeout,
     bool allowDuplicates = false,
   }) async {
     await scan(
@@ -255,9 +255,9 @@ class ScanResult {
             new AdvertisementData.fromProto(p.advertisementData),
         rssi = p.rssi;
 
-  final BluetoothDevice device;
-  final AdvertisementData advertisementData;
-  final int rssi;
+  final BluetoothDevice? device;
+  final AdvertisementData? advertisementData;
+  final int? rssi;
 
   @override
   bool operator ==(Object other) =>
@@ -276,12 +276,12 @@ class ScanResult {
 }
 
 class AdvertisementData {
-  final String localName;
-  final int txPowerLevel;
-  final bool connectable;
-  final Map<int, List<int>> manufacturerData;
-  final Map<String, List<int>> serviceData;
-  final List<String> serviceUuids;
+  final String? localName;
+  final int? txPowerLevel;
+  final bool? connectable;
+  final Map<int, List<int>>? manufacturerData;
+  final Map<String, List<int>>? serviceData;
+  final List<String>? serviceUuids;
 
   AdvertisementData(
       {this.localName,

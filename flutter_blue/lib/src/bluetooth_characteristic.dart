@@ -8,26 +8,27 @@ class BluetoothCharacteristic {
   final Guid uuid;
   final DeviceIdentifier deviceId;
   final Guid serviceUuid;
-  final Guid secondaryServiceUuid;
+  final Guid? secondaryServiceUuid;
   final CharacteristicProperties properties;
   final List<BluetoothDescriptor> descriptors;
   bool get isNotifying {
     try {
       var cccd =
           descriptors.singleWhere((d) => d.uuid == BluetoothDescriptor.cccd);
-      return ((cccd.lastValue[0] & 0x01) > 0 || (cccd.lastValue[0] & 0x02) > 0);
+      return ((cccd.lastValue![0] & 0x01) > 0 ||
+          (cccd.lastValue![0] & 0x02) > 0);
     } catch (e) {
       return false;
     }
   }
 
   BehaviorSubject<List<int>> _value;
-  Stream<List<int>> get value => Rx.merge([
+  Stream<List<int>?> get value => Rx.merge([
         _value.stream,
         _onValueChangedStream,
       ]);
 
-  List<int> get lastValue => _value.value;
+  List<int>? get lastValue => _value.value;
 
   BluetoothCharacteristic.fromProto(protos.BluetoothCharacteristic p)
       : uuid = new Guid(p.uuid),
@@ -57,7 +58,7 @@ class BluetoothCharacteristic {
         return c;
       });
 
-  Stream<List<int>> get _onValueChangedStream =>
+  Stream<List<int>?> get _onValueChangedStream =>
       _onCharacteristicChangedStream.map((c) => c.lastValue);
 
   void _updateDescriptors(List<BluetoothDescriptor> newDescriptors) {
@@ -114,7 +115,7 @@ class BluetoothCharacteristic {
       ..characteristicUuid = uuid.toString()
       ..serviceUuid = serviceUuid.toString()
       ..writeType =
-          protos.WriteCharacteristicRequest_WriteType.valueOf(type.index)
+          protos.WriteCharacteristicRequest_WriteType.valueOf(type.index)!
       ..value = value;
 
     var result = await FlutterBlue.instance._channel
@@ -138,7 +139,7 @@ class BluetoothCharacteristic {
         .then((success) => (!success)
             ? throw new Exception('Failed to write the characteristic')
             : null)
-        .then((_) => null);
+        .then(((_) => null));
   }
 
   /// Sets notifications or indications for the value of a specified characteristic
@@ -170,7 +171,7 @@ class BluetoothCharacteristic {
 
   @override
   String toString() {
-    return 'BluetoothCharacteristic{uuid: $uuid, deviceId: $deviceId, serviceUuid: $serviceUuid, secondaryServiceUuid: $secondaryServiceUuid, properties: $properties, descriptors: $descriptors, value: ${_value?.value}';
+    return 'BluetoothCharacteristic{uuid: $uuid, deviceId: $deviceId, serviceUuid: $serviceUuid, secondaryServiceUuid: $secondaryServiceUuid, properties: $properties, descriptors: $descriptors, value: ${_value.value}';
   }
 }
 

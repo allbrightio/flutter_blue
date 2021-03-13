@@ -2,7 +2,7 @@
 //  Generated code. Do not modify.
 //  source: flutterblue.proto
 //
-// @dart = 2.3
+
 // ignore_for_file: camel_case_types,non_constant_identifier_names,library_prefixes,unused_import,unused_shown_name,return_of_invalid_type
 
 import 'dart:core' as $core;
@@ -29,7 +29,7 @@ class Int32Value extends $pb.GeneratedMessage {
       create()..mergeFromJson(i, r);
   Int32Value clone() => Int32Value()..mergeFromMessage(this);
   Int32Value copyWith(void Function(Int32Value) updates) =>
-      super.copyWith((message) => updates(message as Int32Value));
+      super.copyWith((message) => updates(message as Int32Value)) as Int32Value;
   $pb.BuilderInfo get info_ => _i;
   @$core.pragma('dart2js:noInline')
   static Int32Value create() => Int32Value._();
@@ -38,7 +38,7 @@ class Int32Value extends $pb.GeneratedMessage {
   @$core.pragma('dart2js:noInline')
   static Int32Value getDefault() => _defaultInstance ??=
       $pb.GeneratedMessage.$_defaultFor<Int32Value>(create);
-  static Int32Value _defaultInstance;
+  static Int32Value? _defaultInstance;
 
   @$pb.TagNumber(1)
   $core.int get value => $_getIZ(0);
@@ -72,7 +72,7 @@ class BluetoothState extends $pb.GeneratedMessage {
       create()..mergeFromJson(i, r);
   BluetoothState clone() => BluetoothState()..mergeFromMessage(this);
   BluetoothState copyWith(void Function(BluetoothState) updates) =>
-      super.copyWith((message) => updates(message as BluetoothState));
+      super.copyWith((message) => updates(message as BluetoothState)) as BluetoothState;
   $pb.BuilderInfo get info_ => _i;
   @$core.pragma('dart2js:noInline')
   static BluetoothState create() => BluetoothState._();
@@ -82,7 +82,7 @@ class BluetoothState extends $pb.GeneratedMessage {
   @$core.pragma('dart2js:noInline')
   static BluetoothState getDefault() => _defaultInstance ??=
       $pb.GeneratedMessage.$_defaultFor<BluetoothState>(create);
-  static BluetoothState _defaultInstance;
+  static BluetoothState? _defaultInstance;
 
   @$pb.TagNumber(1)
   BluetoothState_State get state => $_getN(0);
@@ -124,7 +124,7 @@ class AdvertisementData extends $pb.GeneratedMessage {
       create()..mergeFromJson(i, r);
   AdvertisementData clone() => AdvertisementData()..mergeFromMessage(this);
   AdvertisementData copyWith(void Function(AdvertisementData) updates) =>
-      super.copyWith((message) => updates(message as AdvertisementData));
+      super.copyWith((message) => updates(message as AdvertisementData)) as AdvertisementData;
   $pb.BuilderInfo get info_ => _i;
   @$core.pragma('dart2js:noInline')
   static AdvertisementData create() => AdvertisementData._();
@@ -134,7 +134,7 @@ class AdvertisementData extends $pb.GeneratedMessage {
   @$core.pragma('dart2js:noInline')
   static AdvertisementData getDefault() => _defaultInstance ??=
       $pb.GeneratedMessage.$_defaultFor<AdvertisementData>(create);
-  static AdvertisementData _defaultInstance;
+  static AdvertisementData? _defaultInstance;
 
   @$pb.TagNumber(1)
   $core.String get localName => $_getSZ(0);
@@ -203,7 +203,7 @@ class ScanSettings extends $pb.GeneratedMessage {
       create()..mergeFromJson(i, r);
   ScanSettings clone() => ScanSettings()..mergeFromMessage(this);
   ScanSettings copyWith(void Function(ScanSettings) updates) =>
-      super.copyWith((message) => updates(message as ScanSettings));
+      super.copyWith((message) => updates(message as ScanSettings)) as ScanSettings;
   $pb.BuilderInfo get info_ => _i;
   @$core.pragma('dart2js:noInline')
   static ScanSettings create() => ScanSettings._();
@@ -213,7 +213,7 @@ class ScanSettings extends $pb.GeneratedMessage {
   @$core.pragma('dart2js:noInline')
   static ScanSettings getDefault() => _defaultInstance ??=
       $pb.GeneratedMessage.$_defaultFor<ScanSettings>(create);
-  static ScanSettings _defaultInstance;
+  static ScanSettings? _defaultInstance;
 
   @$pb.TagNumber(1)
   $core.int get androidScanMode => $_getIZ(0);
@@ -262,7 +262,7 @@ class ScanResult extends $pb.GeneratedMessage {
       create()..mergeFromJson(i, r);
   ScanResult clone() => ScanResult()..mergeFromMessage(this);
   ScanResult copyWith(void Function(ScanResult) updates) =>
-      super.copyWith((message) => updates(message as ScanResult));
+      super.copyWith((message) => updates(message as ScanResult)) as ScanResult;
   $pb.BuilderInfo get info_ => _i;
   @$core.pragma('dart2js:noInline')
   static ScanResult create() => ScanResult._();
@@ -271,7 +271,7 @@ class ScanResult extends $pb.GeneratedMessage {
   @$core.pragma('dart2js:noInline')
   static ScanResult getDefault() => _defaultInstance ??=
       $pb.GeneratedMessage.$_defaultFor<ScanResult>(create);
-  static ScanResult _defaultInstance;
+  static ScanResult? _defaultInstance;
 
   @$pb.TagNumber(1)
   BluetoothDevice get device => $_getN(0);
@@ -331,7 +331,7 @@ class ConnectRequest extends $pb.GeneratedMessage {
       create()..mergeFromJson(i, r);
   ConnectRequest clone() => ConnectRequest()..mergeFromMessage(this);
   ConnectRequest copyWith(void Function(ConnectRequest) updates) =>
-      super.copyWith((message) => updates(message as ConnectRequest));
+      super.copyWith((message) => updates(message as ConnectRequest)) as ConnectRequest;
   $pb.BuilderInfo get info_ => _i;
   @$core.pragma('dart2js:noInline')
   static ConnectRequest create() => ConnectRequest._();
@@ -341,7 +341,7 @@ class ConnectRequest extends $pb.GeneratedMessage {
   @$core.pragma('dart2js:noInline')
   static ConnectRequest getDefault() => _defaultInstance ??=
       $pb.GeneratedMessage.$_defaultFor<ConnectRequest>(create);
-  static ConnectRequest _defaultInstance;
+  static ConnectRequest? _defaultInstance;
 
   @$pb.TagNumber(1)
   $core.String get remoteId => $_getSZ(0);
@@ -389,7 +389,7 @@ class BluetoothDevice extends $pb.GeneratedMessage {
       create()..mergeFromJson(i, r);
   BluetoothDevice clone() => BluetoothDevice()..mergeFromMessage(this);
   BluetoothDevice copyWith(void Function(BluetoothDevice) updates) =>
-      super.copyWith((message) => updates(message as BluetoothDevice));
+      super.copyWith((message) => updates(message as BluetoothDevice)) as BluetoothDevice;
   $pb.BuilderInfo get info_ => _i;
   @$core.pragma('dart2js:noInline')
   static BluetoothDevice create() => BluetoothDevice._();
@@ -399,7 +399,7 @@ class BluetoothDevice extends $pb.GeneratedMessage {
   @$core.pragma('dart2js:noInline')
   static BluetoothDevice getDefault() => _defaultInstance ??=
       $pb.GeneratedMessage.$_defaultFor<BluetoothDevice>(create);
-  static BluetoothDevice _defaultInstance;
+  static BluetoothDevice? _defaultInstance;
 
   @$pb.TagNumber(1)
   $core.String get remoteId => $_getSZ(0);
@@ -460,7 +460,7 @@ class BluetoothService extends $pb.GeneratedMessage {
       create()..mergeFromJson(i, r);
   BluetoothService clone() => BluetoothService()..mergeFromMessage(this);
   BluetoothService copyWith(void Function(BluetoothService) updates) =>
-      super.copyWith((message) => updates(message as BluetoothService));
+      super.copyWith((message) => updates(message as BluetoothService)) as BluetoothService;
   $pb.BuilderInfo get info_ => _i;
   @$core.pragma('dart2js:noInline')
   static BluetoothService create() => BluetoothService._();
@@ -470,7 +470,7 @@ class BluetoothService extends $pb.GeneratedMessage {
   @$core.pragma('dart2js:noInline')
   static BluetoothService getDefault() => _defaultInstance ??=
       $pb.GeneratedMessage.$_defaultFor<BluetoothService>(create);
-  static BluetoothService _defaultInstance;
+  static BluetoothService? _defaultInstance;
 
   @$pb.TagNumber(1)
   $core.String get uuid => $_getSZ(0);
@@ -541,7 +541,7 @@ class BluetoothCharacteristic extends $pb.GeneratedMessage {
       BluetoothCharacteristic()..mergeFromMessage(this);
   BluetoothCharacteristic copyWith(
           void Function(BluetoothCharacteristic) updates) =>
-      super.copyWith((message) => updates(message as BluetoothCharacteristic));
+      super.copyWith((message) => updates(message as BluetoothCharacteristic)) as BluetoothCharacteristic;
   $pb.BuilderInfo get info_ => _i;
   @$core.pragma('dart2js:noInline')
   static BluetoothCharacteristic create() => BluetoothCharacteristic._();
@@ -551,7 +551,7 @@ class BluetoothCharacteristic extends $pb.GeneratedMessage {
   @$core.pragma('dart2js:noInline')
   static BluetoothCharacteristic getDefault() => _defaultInstance ??=
       $pb.GeneratedMessage.$_defaultFor<BluetoothCharacteristic>(create);
-  static BluetoothCharacteristic _defaultInstance;
+  static BluetoothCharacteristic? _defaultInstance;
 
   @$pb.TagNumber(1)
   $core.String get uuid => $_getSZ(0);
@@ -651,7 +651,7 @@ class BluetoothDescriptor extends $pb.GeneratedMessage {
       create()..mergeFromJson(i, r);
   BluetoothDescriptor clone() => BluetoothDescriptor()..mergeFromMessage(this);
   BluetoothDescriptor copyWith(void Function(BluetoothDescriptor) updates) =>
-      super.copyWith((message) => updates(message as BluetoothDescriptor));
+      super.copyWith((message) => updates(message as BluetoothDescriptor)) as BluetoothDescriptor;
   $pb.BuilderInfo get info_ => _i;
   @$core.pragma('dart2js:noInline')
   static BluetoothDescriptor create() => BluetoothDescriptor._();
@@ -661,7 +661,7 @@ class BluetoothDescriptor extends $pb.GeneratedMessage {
   @$core.pragma('dart2js:noInline')
   static BluetoothDescriptor getDefault() => _defaultInstance ??=
       $pb.GeneratedMessage.$_defaultFor<BluetoothDescriptor>(create);
-  static BluetoothDescriptor _defaultInstance;
+  static BluetoothDescriptor? _defaultInstance;
 
   @$pb.TagNumber(1)
   $core.String get uuid => $_getSZ(0);
@@ -751,7 +751,7 @@ class CharacteristicProperties extends $pb.GeneratedMessage {
       CharacteristicProperties()..mergeFromMessage(this);
   CharacteristicProperties copyWith(
           void Function(CharacteristicProperties) updates) =>
-      super.copyWith((message) => updates(message as CharacteristicProperties));
+      super.copyWith((message) => updates(message as CharacteristicProperties)) as CharacteristicProperties;
   $pb.BuilderInfo get info_ => _i;
   @$core.pragma('dart2js:noInline')
   static CharacteristicProperties create() => CharacteristicProperties._();
@@ -761,7 +761,7 @@ class CharacteristicProperties extends $pb.GeneratedMessage {
   @$core.pragma('dart2js:noInline')
   static CharacteristicProperties getDefault() => _defaultInstance ??=
       $pb.GeneratedMessage.$_defaultFor<CharacteristicProperties>(create);
-  static CharacteristicProperties _defaultInstance;
+  static CharacteristicProperties? _defaultInstance;
 
   @$pb.TagNumber(1)
   $core.bool get broadcast => $_getBF(0);
@@ -904,7 +904,7 @@ class DiscoverServicesResult extends $pb.GeneratedMessage {
       DiscoverServicesResult()..mergeFromMessage(this);
   DiscoverServicesResult copyWith(
           void Function(DiscoverServicesResult) updates) =>
-      super.copyWith((message) => updates(message as DiscoverServicesResult));
+      super.copyWith((message) => updates(message as DiscoverServicesResult)) as DiscoverServicesResult;
   $pb.BuilderInfo get info_ => _i;
   @$core.pragma('dart2js:noInline')
   static DiscoverServicesResult create() => DiscoverServicesResult._();
@@ -914,7 +914,7 @@ class DiscoverServicesResult extends $pb.GeneratedMessage {
   @$core.pragma('dart2js:noInline')
   static DiscoverServicesResult getDefault() => _defaultInstance ??=
       $pb.GeneratedMessage.$_defaultFor<DiscoverServicesResult>(create);
-  static DiscoverServicesResult _defaultInstance;
+  static DiscoverServicesResult? _defaultInstance;
 
   @$pb.TagNumber(1)
   $core.String get remoteId => $_getSZ(0);
@@ -954,7 +954,7 @@ class ReadCharacteristicRequest extends $pb.GeneratedMessage {
   ReadCharacteristicRequest copyWith(
           void Function(ReadCharacteristicRequest) updates) =>
       super
-          .copyWith((message) => updates(message as ReadCharacteristicRequest));
+          .copyWith((message) => updates(message as ReadCharacteristicRequest)) as ReadCharacteristicRequest;
   $pb.BuilderInfo get info_ => _i;
   @$core.pragma('dart2js:noInline')
   static ReadCharacteristicRequest create() => ReadCharacteristicRequest._();
@@ -964,7 +964,7 @@ class ReadCharacteristicRequest extends $pb.GeneratedMessage {
   @$core.pragma('dart2js:noInline')
   static ReadCharacteristicRequest getDefault() => _defaultInstance ??=
       $pb.GeneratedMessage.$_defaultFor<ReadCharacteristicRequest>(create);
-  static ReadCharacteristicRequest _defaultInstance;
+  static ReadCharacteristicRequest? _defaultInstance;
 
   @$pb.TagNumber(1)
   $core.String get remoteId => $_getSZ(0);
@@ -1036,7 +1036,7 @@ class ReadCharacteristicResponse extends $pb.GeneratedMessage {
   ReadCharacteristicResponse copyWith(
           void Function(ReadCharacteristicResponse) updates) =>
       super.copyWith(
-          (message) => updates(message as ReadCharacteristicResponse));
+          (message) => updates(message as ReadCharacteristicResponse)) as ReadCharacteristicResponse;
   $pb.BuilderInfo get info_ => _i;
   @$core.pragma('dart2js:noInline')
   static ReadCharacteristicResponse create() => ReadCharacteristicResponse._();
@@ -1046,7 +1046,7 @@ class ReadCharacteristicResponse extends $pb.GeneratedMessage {
   @$core.pragma('dart2js:noInline')
   static ReadCharacteristicResponse getDefault() => _defaultInstance ??=
       $pb.GeneratedMessage.$_defaultFor<ReadCharacteristicResponse>(create);
-  static ReadCharacteristicResponse _defaultInstance;
+  static ReadCharacteristicResponse? _defaultInstance;
 
   @$pb.TagNumber(1)
   $core.String get remoteId => $_getSZ(0);
@@ -1097,7 +1097,7 @@ class ReadDescriptorRequest extends $pb.GeneratedMessage {
       ReadDescriptorRequest()..mergeFromMessage(this);
   ReadDescriptorRequest copyWith(
           void Function(ReadDescriptorRequest) updates) =>
-      super.copyWith((message) => updates(message as ReadDescriptorRequest));
+      super.copyWith((message) => updates(message as ReadDescriptorRequest)) as ReadDescriptorRequest;
   $pb.BuilderInfo get info_ => _i;
   @$core.pragma('dart2js:noInline')
   static ReadDescriptorRequest create() => ReadDescriptorRequest._();
@@ -1107,7 +1107,7 @@ class ReadDescriptorRequest extends $pb.GeneratedMessage {
   @$core.pragma('dart2js:noInline')
   static ReadDescriptorRequest getDefault() => _defaultInstance ??=
       $pb.GeneratedMessage.$_defaultFor<ReadDescriptorRequest>(create);
-  static ReadDescriptorRequest _defaultInstance;
+  static ReadDescriptorRequest? _defaultInstance;
 
   @$pb.TagNumber(1)
   $core.String get remoteId => $_getSZ(0);
@@ -1190,7 +1190,7 @@ class ReadDescriptorResponse extends $pb.GeneratedMessage {
       ReadDescriptorResponse()..mergeFromMessage(this);
   ReadDescriptorResponse copyWith(
           void Function(ReadDescriptorResponse) updates) =>
-      super.copyWith((message) => updates(message as ReadDescriptorResponse));
+      super.copyWith((message) => updates(message as ReadDescriptorResponse)) as ReadDescriptorResponse;
   $pb.BuilderInfo get info_ => _i;
   @$core.pragma('dart2js:noInline')
   static ReadDescriptorResponse create() => ReadDescriptorResponse._();
@@ -1200,7 +1200,7 @@ class ReadDescriptorResponse extends $pb.GeneratedMessage {
   @$core.pragma('dart2js:noInline')
   static ReadDescriptorResponse getDefault() => _defaultInstance ??=
       $pb.GeneratedMessage.$_defaultFor<ReadDescriptorResponse>(create);
-  static ReadDescriptorResponse _defaultInstance;
+  static ReadDescriptorResponse? _defaultInstance;
 
   @$pb.TagNumber(1)
   ReadDescriptorRequest get request => $_getN(0);
@@ -1257,7 +1257,7 @@ class WriteCharacteristicRequest extends $pb.GeneratedMessage {
   WriteCharacteristicRequest copyWith(
           void Function(WriteCharacteristicRequest) updates) =>
       super.copyWith(
-          (message) => updates(message as WriteCharacteristicRequest));
+          (message) => updates(message as WriteCharacteristicRequest)) as WriteCharacteristicRequest;
   $pb.BuilderInfo get info_ => _i;
   @$core.pragma('dart2js:noInline')
   static WriteCharacteristicRequest create() => WriteCharacteristicRequest._();
@@ -1267,7 +1267,7 @@ class WriteCharacteristicRequest extends $pb.GeneratedMessage {
   @$core.pragma('dart2js:noInline')
   static WriteCharacteristicRequest getDefault() => _defaultInstance ??=
       $pb.GeneratedMessage.$_defaultFor<WriteCharacteristicRequest>(create);
-  static WriteCharacteristicRequest _defaultInstance;
+  static WriteCharacteristicRequest? _defaultInstance;
 
   @$pb.TagNumber(1)
   $core.String get remoteId => $_getSZ(0);
@@ -1364,7 +1364,7 @@ class WriteCharacteristicResponse extends $pb.GeneratedMessage {
   WriteCharacteristicResponse copyWith(
           void Function(WriteCharacteristicResponse) updates) =>
       super.copyWith(
-          (message) => updates(message as WriteCharacteristicResponse));
+          (message) => updates(message as WriteCharacteristicResponse)) as WriteCharacteristicResponse;
   $pb.BuilderInfo get info_ => _i;
   @$core.pragma('dart2js:noInline')
   static WriteCharacteristicResponse create() =>
@@ -1375,7 +1375,7 @@ class WriteCharacteristicResponse extends $pb.GeneratedMessage {
   @$core.pragma('dart2js:noInline')
   static WriteCharacteristicResponse getDefault() => _defaultInstance ??=
       $pb.GeneratedMessage.$_defaultFor<WriteCharacteristicResponse>(create);
-  static WriteCharacteristicResponse _defaultInstance;
+  static WriteCharacteristicResponse? _defaultInstance;
 
   @$pb.TagNumber(1)
   WriteCharacteristicRequest get request => $_getN(0);
@@ -1427,7 +1427,7 @@ class WriteDescriptorRequest extends $pb.GeneratedMessage {
       WriteDescriptorRequest()..mergeFromMessage(this);
   WriteDescriptorRequest copyWith(
           void Function(WriteDescriptorRequest) updates) =>
-      super.copyWith((message) => updates(message as WriteDescriptorRequest));
+      super.copyWith((message) => updates(message as WriteDescriptorRequest)) as WriteDescriptorRequest;
   $pb.BuilderInfo get info_ => _i;
   @$core.pragma('dart2js:noInline')
   static WriteDescriptorRequest create() => WriteDescriptorRequest._();
@@ -1437,7 +1437,7 @@ class WriteDescriptorRequest extends $pb.GeneratedMessage {
   @$core.pragma('dart2js:noInline')
   static WriteDescriptorRequest getDefault() => _defaultInstance ??=
       $pb.GeneratedMessage.$_defaultFor<WriteDescriptorRequest>(create);
-  static WriteDescriptorRequest _defaultInstance;
+  static WriteDescriptorRequest? _defaultInstance;
 
   @$pb.TagNumber(1)
   $core.String get remoteId => $_getSZ(0);
@@ -1532,7 +1532,7 @@ class WriteDescriptorResponse extends $pb.GeneratedMessage {
       WriteDescriptorResponse()..mergeFromMessage(this);
   WriteDescriptorResponse copyWith(
           void Function(WriteDescriptorResponse) updates) =>
-      super.copyWith((message) => updates(message as WriteDescriptorResponse));
+      super.copyWith((message) => updates(message as WriteDescriptorResponse)) as WriteDescriptorResponse;
   $pb.BuilderInfo get info_ => _i;
   @$core.pragma('dart2js:noInline')
   static WriteDescriptorResponse create() => WriteDescriptorResponse._();
@@ -1542,7 +1542,7 @@ class WriteDescriptorResponse extends $pb.GeneratedMessage {
   @$core.pragma('dart2js:noInline')
   static WriteDescriptorResponse getDefault() => _defaultInstance ??=
       $pb.GeneratedMessage.$_defaultFor<WriteDescriptorResponse>(create);
-  static WriteDescriptorResponse _defaultInstance;
+  static WriteDescriptorResponse? _defaultInstance;
 
   @$pb.TagNumber(1)
   WriteDescriptorRequest get request => $_getN(0);
@@ -1593,7 +1593,7 @@ class SetNotificationRequest extends $pb.GeneratedMessage {
       SetNotificationRequest()..mergeFromMessage(this);
   SetNotificationRequest copyWith(
           void Function(SetNotificationRequest) updates) =>
-      super.copyWith((message) => updates(message as SetNotificationRequest));
+      super.copyWith((message) => updates(message as SetNotificationRequest)) as SetNotificationRequest;
   $pb.BuilderInfo get info_ => _i;
   @$core.pragma('dart2js:noInline')
   static SetNotificationRequest create() => SetNotificationRequest._();
@@ -1603,7 +1603,7 @@ class SetNotificationRequest extends $pb.GeneratedMessage {
   @$core.pragma('dart2js:noInline')
   static SetNotificationRequest getDefault() => _defaultInstance ??=
       $pb.GeneratedMessage.$_defaultFor<SetNotificationRequest>(create);
-  static SetNotificationRequest _defaultInstance;
+  static SetNotificationRequest? _defaultInstance;
 
   @$pb.TagNumber(1)
   $core.String get remoteId => $_getSZ(0);
@@ -1687,7 +1687,7 @@ class SetNotificationResponse extends $pb.GeneratedMessage {
       SetNotificationResponse()..mergeFromMessage(this);
   SetNotificationResponse copyWith(
           void Function(SetNotificationResponse) updates) =>
-      super.copyWith((message) => updates(message as SetNotificationResponse));
+      super.copyWith((message) => updates(message as SetNotificationResponse)) as SetNotificationResponse;
   $pb.BuilderInfo get info_ => _i;
   @$core.pragma('dart2js:noInline')
   static SetNotificationResponse create() => SetNotificationResponse._();
@@ -1697,7 +1697,7 @@ class SetNotificationResponse extends $pb.GeneratedMessage {
   @$core.pragma('dart2js:noInline')
   static SetNotificationResponse getDefault() => _defaultInstance ??=
       $pb.GeneratedMessage.$_defaultFor<SetNotificationResponse>(create);
-  static SetNotificationResponse _defaultInstance;
+  static SetNotificationResponse? _defaultInstance;
 
   @$pb.TagNumber(1)
   $core.String get remoteId => $_getSZ(0);
@@ -1758,7 +1758,7 @@ class OnCharacteristicChanged extends $pb.GeneratedMessage {
       OnCharacteristicChanged()..mergeFromMessage(this);
   OnCharacteristicChanged copyWith(
           void Function(OnCharacteristicChanged) updates) =>
-      super.copyWith((message) => updates(message as OnCharacteristicChanged));
+      super.copyWith((message) => updates(message as OnCharacteristicChanged)) as OnCharacteristicChanged;
   $pb.BuilderInfo get info_ => _i;
   @$core.pragma('dart2js:noInline')
   static OnCharacteristicChanged create() => OnCharacteristicChanged._();
@@ -1768,7 +1768,7 @@ class OnCharacteristicChanged extends $pb.GeneratedMessage {
   @$core.pragma('dart2js:noInline')
   static OnCharacteristicChanged getDefault() => _defaultInstance ??=
       $pb.GeneratedMessage.$_defaultFor<OnCharacteristicChanged>(create);
-  static OnCharacteristicChanged _defaultInstance;
+  static OnCharacteristicChanged? _defaultInstance;
 
   @$pb.TagNumber(1)
   $core.String get remoteId => $_getSZ(0);
@@ -1818,7 +1818,7 @@ class DeviceStateResponse extends $pb.GeneratedMessage {
       create()..mergeFromJson(i, r);
   DeviceStateResponse clone() => DeviceStateResponse()..mergeFromMessage(this);
   DeviceStateResponse copyWith(void Function(DeviceStateResponse) updates) =>
-      super.copyWith((message) => updates(message as DeviceStateResponse));
+      super.copyWith((message) => updates(message as DeviceStateResponse)) as DeviceStateResponse;
   $pb.BuilderInfo get info_ => _i;
   @$core.pragma('dart2js:noInline')
   static DeviceStateResponse create() => DeviceStateResponse._();
@@ -1828,7 +1828,7 @@ class DeviceStateResponse extends $pb.GeneratedMessage {
   @$core.pragma('dart2js:noInline')
   static DeviceStateResponse getDefault() => _defaultInstance ??=
       $pb.GeneratedMessage.$_defaultFor<DeviceStateResponse>(create);
-  static DeviceStateResponse _defaultInstance;
+  static DeviceStateResponse? _defaultInstance;
 
   @$pb.TagNumber(1)
   $core.String get remoteId => $_getSZ(0);
@@ -1874,7 +1874,7 @@ class ConnectedDevicesResponse extends $pb.GeneratedMessage {
       ConnectedDevicesResponse()..mergeFromMessage(this);
   ConnectedDevicesResponse copyWith(
           void Function(ConnectedDevicesResponse) updates) =>
-      super.copyWith((message) => updates(message as ConnectedDevicesResponse));
+      super.copyWith((message) => updates(message as ConnectedDevicesResponse)) as ConnectedDevicesResponse;
   $pb.BuilderInfo get info_ => _i;
   @$core.pragma('dart2js:noInline')
   static ConnectedDevicesResponse create() => ConnectedDevicesResponse._();
@@ -1884,7 +1884,7 @@ class ConnectedDevicesResponse extends $pb.GeneratedMessage {
   @$core.pragma('dart2js:noInline')
   static ConnectedDevicesResponse getDefault() => _defaultInstance ??=
       $pb.GeneratedMessage.$_defaultFor<ConnectedDevicesResponse>(create);
-  static ConnectedDevicesResponse _defaultInstance;
+  static ConnectedDevicesResponse? _defaultInstance;
 
   @$pb.TagNumber(1)
   $core.List<BluetoothDevice> get devices => $_getList(0);
@@ -1907,7 +1907,7 @@ class MtuSizeRequest extends $pb.GeneratedMessage {
       create()..mergeFromJson(i, r);
   MtuSizeRequest clone() => MtuSizeRequest()..mergeFromMessage(this);
   MtuSizeRequest copyWith(void Function(MtuSizeRequest) updates) =>
-      super.copyWith((message) => updates(message as MtuSizeRequest));
+      super.copyWith((message) => updates(message as MtuSizeRequest)) as MtuSizeRequest;
   $pb.BuilderInfo get info_ => _i;
   @$core.pragma('dart2js:noInline')
   static MtuSizeRequest create() => MtuSizeRequest._();
@@ -1917,7 +1917,7 @@ class MtuSizeRequest extends $pb.GeneratedMessage {
   @$core.pragma('dart2js:noInline')
   static MtuSizeRequest getDefault() => _defaultInstance ??=
       $pb.GeneratedMessage.$_defaultFor<MtuSizeRequest>(create);
-  static MtuSizeRequest _defaultInstance;
+  static MtuSizeRequest? _defaultInstance;
 
   @$pb.TagNumber(1)
   $core.String get remoteId => $_getSZ(0);
@@ -1961,7 +1961,7 @@ class MtuSizeResponse extends $pb.GeneratedMessage {
       create()..mergeFromJson(i, r);
   MtuSizeResponse clone() => MtuSizeResponse()..mergeFromMessage(this);
   MtuSizeResponse copyWith(void Function(MtuSizeResponse) updates) =>
-      super.copyWith((message) => updates(message as MtuSizeResponse));
+      super.copyWith((message) => updates(message as MtuSizeResponse)) as MtuSizeResponse;
   $pb.BuilderInfo get info_ => _i;
   @$core.pragma('dart2js:noInline')
   static MtuSizeResponse create() => MtuSizeResponse._();
@@ -1971,7 +1971,7 @@ class MtuSizeResponse extends $pb.GeneratedMessage {
   @$core.pragma('dart2js:noInline')
   static MtuSizeResponse getDefault() => _defaultInstance ??=
       $pb.GeneratedMessage.$_defaultFor<MtuSizeResponse>(create);
-  static MtuSizeResponse _defaultInstance;
+  static MtuSizeResponse? _defaultInstance;
 
   @$pb.TagNumber(1)
   $core.String get remoteId => $_getSZ(0);

@@ -12,3 +12,5 @@ build/
 .vscode/
 
 .fvm/
+.flutter-plugins
+.flutter-plugins-dependencies
