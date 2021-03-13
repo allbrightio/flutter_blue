@@ -1,9 +1,16 @@
-name: flutter_blue
-description:
-  Flutter plugin for connecting and communicating with Bluetooth Low Energy devices,
-  on Android and iOS
+name: flutter_blue_linux
+description: Linux Implementation of flutter_blue
 version: 0.8.0
 homepage: https://github.com/pauldemarco/flutter_blue
+publish_to: none
+
+flutter:
+  plugin:
+    platforms:
+      linux:
+        dartPluginClass: PathProviderLinux
+        pluginClass: none
+
 
 environment:
   sdk: '>=2.12.0 <3.0.0'
@@ -13,11 +20,14 @@ dependencies:
   flutter:
     sdk: flutter
   convert: ^3.0.0
-  protobuf: ^2.0.0
   rxdart: ^0.26.0
   collection: ^1.14.13
   meta: ^1.2.3
   flutter_blue_platform_interface: ^0.8.0
+  bluez:
+    git:
+      url: https://github.com/allbrightio/bluez.dart.git
+      ref: feature/add_characteritic_functions
   
 dev_dependencies:
   flutter_test:
@@ -30,13 +40,3 @@ dependency_overrides:
   flutter_blue_platform_interface:
     path: ../flutter_blue_platform_interface
 
-flutter:
-  plugin:
-    platforms:
-      android:
-        package: com.pauldemarco.flutter_blue
-        pluginClass: FlutterBluePlugin
-      ios:
-        pluginClass: FlutterBluePlugin
-      macos:
-        pluginClass: FlutterBluePlugin
