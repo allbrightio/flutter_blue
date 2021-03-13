@@ -11,8 +11,7 @@ export 'package:flutter_blue_platform_interface/src/flutter_blue_platform.dart';
 export 'src/method_channel_flutter_blue.dart';
 
 import 'package:flutter_blue_platform_interface/flutter_blue_platform_interface.dart';
-import 'src/method_channel_flutter_blue.dart';
 
 class FlutterBlue {
-  static FlutterBluePlatform get instance => MethodChannelFlutterBlue.instance;
+  static FlutterBluePlatform get instance => FlutterBluePlatform.instance;
 }
