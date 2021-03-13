@@ -44,5 +44,7 @@ flutter:
         pluginClass: FlutterBluePlugin
       macos:
         pluginClass: FlutterBluePlugin
+      windows:
+        pluginClass: FlutterBluePlugin
       linux:
         default_package: flutter_blue_linux

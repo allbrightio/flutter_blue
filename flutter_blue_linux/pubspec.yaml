@@ -36,8 +36,8 @@ dev_dependencies:
   #  sdk: flutter
 
 dependency_overrides:
-  bluez:
-    path: ../bluez.dart
+  #bluez:
+  #  path: ../bluez.dart
   flutter_blue_platform_interface:
     path: ../flutter_blue_platform_interface
   

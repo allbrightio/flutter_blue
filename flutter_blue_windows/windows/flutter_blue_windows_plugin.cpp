@@ -1,4 +1,4 @@
-#include "include/flutter_blue/flutter_blue_plugin.h"
+#include "include/flutter_blue_windows/flutter_blue_windows_plugin.h"
 
 // This must be included before many other Windows headers.
 #include <windows.h>
@@ -16,13 +16,13 @@
 
 namespace {
 
-class FlutterBluePlugin : public flutter::Plugin {
+class FlutterBlueWindowsPlugin : public flutter::Plugin {
  public:
   static void RegisterWithRegistrar(flutter::PluginRegistrarWindows *registrar);
 
-  FlutterBluePlugin();
+  FlutterBlueWindowsPlugin();
 
-  virtual ~FlutterBluePlugin();
+  virtual ~FlutterBlueWindowsPlugin();
 
  private:
   // Called when a method is called on this plugin's channel from Dart.
@@ -32,14 +32,14 @@ class FlutterBluePlugin : public flutter::Plugin {
 };
 
 // static
-void FlutterBluePlugin::RegisterWithRegistrar(
+void FlutterBlueWindowsPlugin::RegisterWithRegistrar(
     flutter::PluginRegistrarWindows *registrar) {
   auto channel =
       std::make_unique<flutter::MethodChannel<flutter::EncodableValue>>(
-          registrar->messenger(), "flutter_blue",
+          registrar->messenger(), "flutter_blue_windows",
           &flutter::StandardMethodCodec::GetInstance());
 
-  auto plugin = std::make_unique<FlutterBluePlugin>();
+  auto plugin = std::make_unique<FlutterBlueWindowsPlugin>();
 
   channel->SetMethodCallHandler(
       [plugin_pointer = plugin.get()](const auto &call, auto result) {
@@ -49,11 +49,11 @@ void FlutterBluePlugin::RegisterWithRegistrar(
   registrar->AddPlugin(std::move(plugin));
 }
 
-FlutterBluePlugin::FlutterBluePlugin() {}
+FlutterBlueWindowsPlugin::FlutterBlueWindowsPlugin() {}
 
-FlutterBluePlugin::~FlutterBluePlugin() {}
+FlutterBlueWindowsPlugin::~FlutterBlueWindowsPlugin() {}
 
-void FlutterBluePlugin::HandleMethodCall(
+void FlutterBlueWindowsPlugin::HandleMethodCall(
     const flutter::MethodCall<flutter::EncodableValue> &method_call,
     std::unique_ptr<flutter::MethodResult<flutter::EncodableValue>> result) {
   if (method_call.method_name().compare("getPlatformVersion") == 0) {
@@ -74,9 +74,9 @@ void FlutterBluePlugin::HandleMethodCall(
 
 }  // namespace
 
-void FlutterBluePluginRegisterWithRegistrar(
+void FlutterBlueWindowsPluginRegisterWithRegistrar(
     FlutterDesktopPluginRegistrarRef registrar) {
-  FlutterBluePlugin::RegisterWithRegistrar(
+  FlutterBlueWindowsPlugin::RegisterWithRegistrar(
       flutter::PluginRegistrarManager::GetInstance()
           ->GetRegistrar<flutter::PluginRegistrarWindows>(registrar));
 }
