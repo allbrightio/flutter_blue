@@ -12,7 +12,7 @@ export 'package:flutter_blue_platform_interface/src/bluetooth_service.dart';
 export 'package:flutter_blue_platform_interface/src/flutter_blue_platform.dart';
 
 class FlutterBlueLinux extends FlutterBluePlatform {
-  late BlueZClient? _bluezClient;
+  BlueZClient? _bluezClient;
   BlueZAdapter? _bluezAdapter;
 
   final _stopScanPill = new PublishSubject();
