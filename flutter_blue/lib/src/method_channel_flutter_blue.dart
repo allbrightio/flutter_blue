@@ -18,15 +18,14 @@ class MethodChannelFlutterBlue extends FlutterBluePlatform {
 
   /// Singleton boilerplate
   MethodChannelFlutterBlue._() {
-    channel.setMethodCallHandler((MethodCall call) {
+    channel.setMethodCallHandler((MethodCall call) async {
       methodStreamController.add(call);
-      return;
-    } as Future<dynamic> Function(MethodCall)?);
+    });
 
     _setLogLevelIfAvailable();
   }
 
-  static MethodChannelFlutterBlue _instance = new MethodChannelFlutterBlue._();
+  static MethodChannelFlutterBlue _instance = MethodChannelFlutterBlue._();
   static MethodChannelFlutterBlue get instance => _instance;
 
   /// Log level of the instance, default is all messages (debug).
