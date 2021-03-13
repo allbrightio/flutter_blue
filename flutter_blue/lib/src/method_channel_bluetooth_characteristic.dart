@@ -21,7 +21,7 @@ class MethodChannelBluetoothCharacteristic extends BluetoothCharacteristic {
   }
 
   BehaviorSubject<List<int>> _value;
-  Stream<List<int>?> get value => Rx.merge([
+  Stream<List<int>> get value => Rx.merge([
         _value.stream,
         _onValueChangedStream,
       ]);
@@ -62,8 +62,9 @@ class MethodChannelBluetoothCharacteristic extends BluetoothCharacteristic {
             return c;
           });
 
-  Stream<List<int>?> get _onValueChangedStream =>
-      _onCharacteristicChangedStream.map((c) => c.lastValue);
+  Stream<List<int>> get _onValueChangedStream => _onCharacteristicChangedStream
+      .where((c) => c.lastValue != null)
+      .map((c) => c.lastValue!);
 
   void _updateDescriptors(List<BluetoothDescriptor> newDescriptors) {
     for (var d in descriptors) {

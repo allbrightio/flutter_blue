@@ -144,7 +144,7 @@ class ScanResult {
     required this.rssi,
   });
 
-  final BluetoothDevice? device;
+  final BluetoothDevice device;
   final AdvertisementData? advertisementData;
   final int? rssi;
 

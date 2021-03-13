@@ -33,7 +33,7 @@ abstract class BluetoothCharacteristic {
     }
   }
 
-  Stream<List<int>?> get value;
+  Stream<List<int>> get value;
 
   List<int>? get lastValue;
 
