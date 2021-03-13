@@ -12,7 +12,7 @@ export 'package:flutter_blue_platform_interface/src/bluetooth_service.dart';
 export 'package:flutter_blue_platform_interface/src/flutter_blue_platform.dart';
 
 class FlutterBlueLinux extends FlutterBluePlatform {
-  late BlueZClient _bluezClient;
+  late BlueZClient? _bluezClient;
   BlueZAdapter? _bluezAdapter;
 
   final _stopScanPill = new PublishSubject();
@@ -26,23 +26,24 @@ class FlutterBlueLinux extends FlutterBluePlatform {
 
   FlutterBlueLinux() {
     _setLogLevelIfAvailable();
-    _bluezClient = BlueZClient();
-
-    // TODO handle init / dispose
-    _init();
   }
 
-  Future<void> _init() async {
-    await _bluezClient.connect();
-    if (_bluezClient.adapters.isEmpty) {
-      print('No Bluetooth adapters found');
-    } else {
-      _bluezAdapter = _bluezClient.adapters.first;
-    }
-  }
-
+  // TODO when ?
   Future<void> _dispose() async {
-    _bluezClient.close();
+    _bluezClient?.close();
+  }
+
+  Future<BlueZClient> get _client async {
+    if (_bluezClient == null) {
+      _bluezClient = BlueZClient();
+      await _bluezClient!.connect();
+      if (_bluezClient!.adapters.isEmpty) {
+        print('No Bluetooth adapters found');
+      } else {
+        _bluezAdapter = _bluezClient!.adapters.first;
+      }
+    }
+    return _bluezClient!;
   }
 
   /// Log level of the instance, default is all messages (debug).
@@ -50,11 +51,11 @@ class FlutterBlueLinux extends FlutterBluePlatform {
   LogLevel get logLevel => _logLevel;
 
   @override
-  Future<List<BluetoothDevice>> get connectedDevices async =>
-      _bluezClient.devices
-          .where((device) => device.connected)
-          .map((device) => LinuxBluetoothDevice.fromBluez(bluezDevice: device))
-          .toList();
+  Future<List<BluetoothDevice>> get connectedDevices async => (await _client)
+      .devices
+      .where((device) => device.connected)
+      .map((device) => LinuxBluetoothDevice.fromBluez(bluezDevice: device))
+      .toList();
 
   /// Checks whether the device supports Bluetooth
   @override
@@ -74,6 +75,8 @@ class FlutterBlueLinux extends FlutterBluePlatform {
       List<Guid> withDevices = const [],
       Duration? timeout,
       bool allowDuplicates = false}) async* {
+    final client = await _client;
+
     if (_isScanning.value == true) {
       throw Exception('Another scan is already in progress.');
     }
@@ -88,7 +91,7 @@ class FlutterBlueLinux extends FlutterBluePlatform {
     // Clear scan results list
     _scanResults.add(<ScanResult>[]);
 
-    final results = _bluezClient.devices
+    final results = client.devices
         .map((device) => ScanResult(
             device: LinuxBluetoothDevice.fromBluez(bluezDevice: device),
             advertisementData: null,
@@ -96,7 +99,7 @@ class FlutterBlueLinux extends FlutterBluePlatform {
         .toList();
     _scanResults.add(results);
 
-    _bluezClient.deviceAddedStream.listen((device) {
+    client.deviceAddedStream.listen((device) {
       final list = _scanResults.value!;
       final result = ScanResult(
           device: LinuxBluetoothDevice.fromBluez(bluezDevice: device),
