@@ -8,13 +8,13 @@ flutter:
   plugin:
     platforms:
       linux:
-        pluginClass: FlutterBlueLinux
         fileName: flutter_blue_linux.dart
+        dartPluginClass: FlutterBlueLinux
+
 
 
 environment:
-  sdk: '>=2.12.0 <3.0.0'
-  flutter: ">=1.12.13+hotfix.6 <2.0.0"
+  sdk: ">=2.12.0 <3.0.0"
 
 dependencies:
   flutter:

@@ -14,7 +14,7 @@ dependencies:
 
 dev_dependencies:
   flutter_test:
-    sdk: flutter
+    sdk: flutter 
 
 flutter:
   uses-material-design: true
@@ -22,5 +22,7 @@ flutter:
 dependency_overrides:
   flutter_blue:
     path: ../flutter_blue
+  flutter_blue_linux:
+    path: ../flutter_blue_linux
   flutter_blue_platform_interface:
     path: ../flutter_blue_platform_interface

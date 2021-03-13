@@ -5,6 +5,12 @@ import 'package:rxdart/rxdart.dart';
 import 'package:flutter_blue_linux/src/linux_bluetooth_device.dart';
 import 'dart:async';
 
+export 'package:flutter_blue_platform_interface/src/bluetooth_characteristic.dart';
+export 'package:flutter_blue_platform_interface/src/bluetooth_descriptor.dart';
+export 'package:flutter_blue_platform_interface/src/bluetooth_device.dart';
+export 'package:flutter_blue_platform_interface/src/bluetooth_service.dart';
+export 'package:flutter_blue_platform_interface/src/flutter_blue_platform.dart';
+
 class FlutterBlueLinux extends FlutterBluePlatform {
   late BlueZClient _bluezClient;
   BlueZAdapter? _bluezAdapter;
@@ -12,9 +18,9 @@ class FlutterBlueLinux extends FlutterBluePlatform {
   final _stopScanPill = new PublishSubject();
 
   /// Registers this class as the default instance of [UrlLauncherPlatform].
-  //static void registerWith(Registrar registrar) {
-  //  FlutterBluePlatform.instance = FlutterBlueLinux();
-  //}
+  static void registerWith(dynamic registrar) {
+    FlutterBluePlatform.instance = FlutterBlueLinux();
+  }
 
   FlutterBlueLinux() {
     _setLogLevelIfAvailable();
