@@ -8,8 +8,8 @@ flutter:
   plugin:
     platforms:
       linux:
-        dartPluginClass: PathProviderLinux
-        pluginClass: none
+        pluginClass: FlutterBlueLinux
+        fileName: flutter_blue_linux.dart
 
 
 environment:
