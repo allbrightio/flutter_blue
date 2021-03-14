@@ -24,5 +24,7 @@ dependency_overrides:
     path: ../flutter_blue
   flutter_blue_linux:
     path: ../flutter_blue_linux
+  flutter_blue_windows:
+    path: ../flutter_blue_windows
   flutter_blue_platform_interface:
     path: ../flutter_blue_platform_interface

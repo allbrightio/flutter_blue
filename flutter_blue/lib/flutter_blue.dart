@@ -33,7 +33,7 @@ class FlutterBlue {
       // with a non-default instance.
       if (Platform.isLinux) {
         FlutterBluePlatform.instance = FlutterBlueLinux();
-      } else  if (Platform.isLinux) {
+      } else  if (Platform.isWindows) {
         FlutterBluePlatform.instance = FlutterBlueWindows();
       } else {
         FlutterBluePlatform.instance = MethodChannelFlutterBlue.instance;

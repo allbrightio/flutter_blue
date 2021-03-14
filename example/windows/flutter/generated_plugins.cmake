@@ -3,7 +3,7 @@
 #
 
 list(APPEND FLUTTER_PLUGIN_LIST
-  flutter_blue
+  flutter_blue_windows
 )
 
 set(PLUGIN_BUNDLED_LIBRARIES)
