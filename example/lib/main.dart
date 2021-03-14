@@ -13,7 +13,7 @@ void main() {
   runApp(FlutterBlueApp());
 }
 
-FlutterBluePlatform flutterBlue() => FlutterBluePlatform.instance;
+FlutterBluePlatform flutterBlue() => FlutterBlue.instance;
 
 class FlutterBlueApp extends StatelessWidget {
   @override
@@ -21,7 +21,7 @@ class FlutterBlueApp extends StatelessWidget {
     return MaterialApp(
       color: Colors.lightBlue,
       home: StreamBuilder<BluetoothState>(
-          stream: FlutterBluePlatform.instance.state,
+          stream: flutterBlue().state,
           initialData: BluetoothState.unknown,
           builder: (c, snapshot) {
             final state = snapshot.data;

@@ -18,11 +18,9 @@ class MethodChannelFlutterBlue extends FlutterBluePlatform {
 
   /// Singleton boilerplate
   MethodChannelFlutterBlue._() {
-    channel.setMethodCallHandler((MethodCall call) {
+    channel.setMethodCallHandler((MethodCall call) async {
       methodStreamController.add(call);
-      return;
-    } as Future<dynamic> Function(MethodCall)?);
-
+    });
     _setLogLevelIfAvailable();
   }
 
