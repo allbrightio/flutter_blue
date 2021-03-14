@@ -20,13 +20,11 @@ class MethodChannelFlutterBlue extends FlutterBluePlatform {
   MethodChannelFlutterBlue._() {
     channel.setMethodCallHandler((MethodCall call) async {
       methodStreamController.add(call);
-
     });
-
     _setLogLevelIfAvailable();
   }
 
-  static MethodChannelFlutterBlue _instance = new MethodChannelFlutterBlue._();
+  static MethodChannelFlutterBlue _instance = MethodChannelFlutterBlue._();
   static MethodChannelFlutterBlue get instance => _instance;
 
   /// Log level of the instance, default is all messages (debug).
