@@ -21,7 +21,6 @@ class MethodChannelFlutterBlue extends FlutterBluePlatform {
     channel.setMethodCallHandler((MethodCall call) async {
       methodStreamController.add(call);
     });
-
     _setLogLevelIfAvailable();
   }
 
