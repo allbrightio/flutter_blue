@@ -26,7 +26,7 @@ class LinuxBluetoothCharacteristic extends BluetoothCharacteristic {
     });
   }
 
-  List<int>? get lastValue => _value.value;
+  List<int> get lastValue => _value.value ?? [];
 
   final _value = BehaviorSubject<List<int>>();
   Stream<List<int>> get value => _value;

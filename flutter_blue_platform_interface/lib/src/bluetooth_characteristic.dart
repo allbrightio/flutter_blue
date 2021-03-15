@@ -35,7 +35,7 @@ abstract class BluetoothCharacteristic {
 
   Stream<List<int>> get value;
 
-  List<int>? get lastValue;
+  List<int> get lastValue;
 
   /// Retrieves the value of the characteristic
   Future<List<int>> read();

@@ -145,8 +145,8 @@ class ScanResult {
   });
 
   final BluetoothDevice device;
-  final AdvertisementData? advertisementData;
-  final int? rssi;
+  final AdvertisementData advertisementData;
+  final int rssi;
 
   @override
   bool operator ==(Object other) =>
@@ -165,12 +165,12 @@ class ScanResult {
 }
 
 class AdvertisementData {
-  final String? localName;
+  final String localName;
   final int? txPowerLevel;
-  final bool? connectable;
-  final Map<int, List<int>>? manufacturerData;
-  final Map<String, List<int>>? serviceData;
-  final List<String>? serviceUuids;
+  final bool connectable;
+  final Map<int, List<int>> manufacturerData;
+  final Map<String, List<int>> serviceData;
+  final List<String> serviceUuids;
 
   AdvertisementData({
     required this.localName,

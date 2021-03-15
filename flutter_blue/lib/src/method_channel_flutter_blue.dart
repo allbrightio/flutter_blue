@@ -12,7 +12,7 @@ class MethodChannelFlutterBlue extends FlutterBluePlatform {
   final MethodChannel channel = const MethodChannel('$NAMESPACE/methods');
   final EventChannel stateChannel = const EventChannel('$NAMESPACE/state');
   final StreamController<MethodCall> methodStreamController =
-      new StreamController.broadcast(); // ignore: close_sinks
+      StreamController.broadcast(); // ignore: close_sinks
   Stream<MethodCall> get methodStream => methodStreamController
       .stream; // Used internally to dispatch methods from platform.
 
@@ -135,7 +135,7 @@ class MethodChannelFlutterBlue extends FlutterBluePlatform {
         .map((buffer) => protos.ScanResult.fromBuffer(buffer))
         .map((p) {
       final result = MethodChannelScanResult.fromProto(p);
-      final list = _scanResults.value!;
+      final list = _scanResults.value ?? [];
       int index = list.indexOf(result);
       if (index != -1) {
         list[index] = result;

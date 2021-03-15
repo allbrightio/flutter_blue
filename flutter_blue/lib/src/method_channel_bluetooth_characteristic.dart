@@ -26,7 +26,7 @@ class MethodChannelBluetoothCharacteristic extends BluetoothCharacteristic {
         _onValueChangedStream,
       ]);
 
-  List<int>? get lastValue => _value.value;
+  List<int> get lastValue => _value.value ?? [];
 
   MethodChannelBluetoothCharacteristic.fromProto(
       protos.BluetoothCharacteristic p)
@@ -45,26 +45,24 @@ class MethodChannelBluetoothCharacteristic extends BluetoothCharacteristic {
               MethodChannelCharacteristicProperties.fromProto(p.properties),
         );
 
-  Stream<MethodChannelBluetoothCharacteristic>
-      get _onCharacteristicChangedStream =>
-          MethodChannelFlutterBlue.instance.methodStream
-              .where((m) => m.method == "OnCharacteristicChanged")
-              .map((m) => m.arguments)
-              .map((buffer) =>
-                  new protos.OnCharacteristicChanged.fromBuffer(buffer))
-              .where((p) => p.remoteId == deviceId.toString())
-              .map((p) => new MethodChannelBluetoothCharacteristic.fromProto(
-                  p.characteristic))
-              .where((c) => c.uuid == uuid)
-              .map((c) {
-            // Update the characteristic with the new values
-            _updateDescriptors(c.descriptors);
-            return c;
-          });
+  Stream<BluetoothCharacteristic> get _onCharacteristicChangedStream =>
+      MethodChannelFlutterBlue.instance.methodStream
+          .where((m) => m.method == "OnCharacteristicChanged")
+          .map((m) => m.arguments)
+          .map(
+              (buffer) => new protos.OnCharacteristicChanged.fromBuffer(buffer))
+          .where((p) => p.remoteId == deviceId.toString())
+          .map((p) =>
+              MethodChannelBluetoothCharacteristic.fromProto(p.characteristic))
+          .where((c) => c.uuid == uuid)
+          .map((c) {
+        // Update the characteristic with the new values
+        _updateDescriptors(c.descriptors);
+        return c;
+      });
 
-  Stream<List<int>> get _onValueChangedStream => _onCharacteristicChangedStream
-      .where((c) => c.lastValue != null)
-      .map((c) => c.lastValue!);
+  Stream<List<int>> get _onValueChangedStream =>
+      _onCharacteristicChangedStream.map((c) => c.lastValue);
 
   void _updateDescriptors(List<BluetoothDescriptor> newDescriptors) {
     for (var d in descriptors) {
@@ -167,8 +165,8 @@ class MethodChannelBluetoothCharacteristic extends BluetoothCharacteristic {
             (p.characteristic.uuid == request.characteristicUuid) &&
             (p.characteristic.serviceUuid == request.serviceUuid))
         .first
-        .then((p) => new MethodChannelBluetoothCharacteristic.fromProto(
-            p.characteristic))
+        .then((p) =>
+            MethodChannelBluetoothCharacteristic.fromProto(p.characteristic))
         .then((c) {
       _updateDescriptors(c.descriptors);
       return (c.isNotifying == notify);

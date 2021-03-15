@@ -11,7 +11,7 @@ class MethodChannelBluetoothDescriptor extends BluetoothDescriptor {
   BehaviorSubject<List<int>?> _value;
   Stream<List<int>?> get value => _value.stream;
 
-  List<int>? get lastValue => _value.value;
+  List<int> get lastValue => _value.value ?? [];
 
   MethodChannelBluetoothDescriptor.fromProto(protos.BluetoothDescriptor p)
       : _value = BehaviorSubject.seeded(p.value),

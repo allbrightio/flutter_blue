@@ -89,7 +89,14 @@ class FlutterBlueLinux extends FlutterBluePlatform {
     final results = client.devices
         .map((device) => ScanResult(
             device: LinuxBluetoothDevice.fromBluez(bluezDevice: device),
-            advertisementData: null,
+            advertisementData: AdvertisementData(
+              connectable: true,
+              localName: "",
+              manufacturerData: {},
+              serviceData: {},
+              serviceUuids: [],
+              txPowerLevel: 0,
+            ),
             rssi: device.rssi))
         .toList();
     _scanResults.add(results);
@@ -98,7 +105,14 @@ class FlutterBlueLinux extends FlutterBluePlatform {
       final list = _scanResults.value!;
       final result = ScanResult(
           device: LinuxBluetoothDevice.fromBluez(bluezDevice: device),
-          advertisementData: null,
+          advertisementData: AdvertisementData(
+            connectable: true,
+            localName: "",
+            manufacturerData: {},
+            serviceData: {},
+            serviceUuids: [],
+            txPowerLevel: 0,
+          ),
           rssi: device.rssi);
       int index = list.indexOf(result);
       if (index != -1) {
