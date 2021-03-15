@@ -28,11 +28,6 @@ class FlutterBlueLinux extends FlutterBluePlatform {
     _setLogLevelIfAvailable();
   }
 
-  // TODO when ?
-  Future<void> _dispose() async {
-    _bluezClient?.close();
-  }
-
   Future<BlueZClient> get _client async {
     if (_bluezClient == null) {
       _bluezClient = BlueZClient();
@@ -157,7 +152,12 @@ class FlutterBlueLinux extends FlutterBluePlatform {
     _isScanning.add(false);
   }
 
-  _setLogLevelIfAvailable() async {
+  // TODO when ?
+  Future<void> dispose() async {
+    _bluezClient?.close();
+  }
+
+  Future<void> _setLogLevelIfAvailable() async {
     if (await isAvailable) {
       // Send the log level to the underlying platforms.
       setLogLevel(logLevel);
