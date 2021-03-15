@@ -50,11 +50,8 @@ class LinuxBluetoothDevice extends BluetoothDevice {
     }
 
     _state.add(BluetoothDeviceState.connecting);
-
     await _bluezDevice.connect();
-
     timer?.cancel();
-
     _updateState();
   }
 

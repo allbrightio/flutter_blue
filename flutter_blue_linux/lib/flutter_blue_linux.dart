@@ -89,14 +89,7 @@ class FlutterBlueLinux extends FlutterBluePlatform {
     final results = client.devices
         .map((device) => ScanResult(
             device: LinuxBluetoothDevice.fromBluez(bluezDevice: device),
-            advertisementData: AdvertisementData(
-              connectable: true,
-              localName: "",
-              manufacturerData: {},
-              serviceData: {},
-              serviceUuids: [],
-              txPowerLevel: 0,
-            ),
+            advertisementData: _getAdvertisementData(device),
             rssi: device.rssi))
         .toList();
     _scanResults.add(results);
@@ -105,14 +98,7 @@ class FlutterBlueLinux extends FlutterBluePlatform {
       final list = _scanResults.value!;
       final result = ScanResult(
           device: LinuxBluetoothDevice.fromBluez(bluezDevice: device),
-          advertisementData: AdvertisementData(
-            connectable: true,
-            localName: "",
-            manufacturerData: {},
-            serviceData: {},
-            serviceUuids: [],
-            txPowerLevel: 0,
-          ),
+          advertisementData: _getAdvertisementData(device),
           rssi: device.rssi);
       int index = list.indexOf(result);
       if (index != -1) {
@@ -176,5 +162,18 @@ class FlutterBlueLinux extends FlutterBluePlatform {
       // Send the log level to the underlying platforms.
       setLogLevel(logLevel);
     }
+  }
+
+  AdvertisementData _getAdvertisementData(BlueZDevice device) {
+    return AdvertisementData(
+      connectable: true,
+      localName: device.name,
+      manufacturerData:
+          device.manufacturerData.map((key, value) => MapEntry(key.id, value)),
+      serviceData:
+          device.serviceData.map((key, value) => MapEntry(key.id, value)),
+      serviceUuids: device.uuids.map((uuid) => uuid.id).toList(),
+      txPowerLevel: device.txPower,
+    );
   }
 }
