@@ -11,7 +11,10 @@ class LinuxBluetoothDevice extends BluetoothDevice {
   // ignore: close_sinks
   final _state = BehaviorSubject<BluetoothDeviceState>();
 
-  BehaviorSubject<bool> _isDiscoveringServices = BehaviorSubject.seeded(false);
+  final _isDiscoveringServices = BehaviorSubject<bool>.seeded(false);
+
+  // ignore: close_sinks
+  final _mtu = BehaviorSubject<int>.seeded(0);
 
   BehaviorSubject<List<BluetoothService>> _services =
       BehaviorSubject.seeded([]);
@@ -90,13 +93,13 @@ class LinuxBluetoothDevice extends BluetoothDevice {
   Stream<bool> get isDiscoveringServices => _isDiscoveringServices;
 
   @override
-  // TODO: implement mtu
-  Stream<int> get mtu => throw UnimplementedError();
+  Stream<int> get mtu => _mtu;
 
   @override
-  Future<void> requestMtu(int desiredMtu) {
-    // TODO: implement requestMtu
-    throw UnimplementedError();
+  Future<void> requestMtu(int desiredMtu) async {
+    // Not implemened
+    // TODO add "mtu" parameter when calling bluez read/write/acquire methods.
+    _mtu.add(desiredMtu);
   }
 
   @override

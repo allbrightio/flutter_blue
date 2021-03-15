@@ -54,10 +54,7 @@ class LinuxBluetoothCharacteristic extends BluetoothCharacteristic {
   }
 
   @override
-  Future<Null> write(List<int> value, {bool withoutResponse = false}) {
-    _blueZCharacteristic.writeValue(value);
-    throw UnimplementedError();
+  Future<Null> write(List<int> value, {bool withoutResponse = false}) async {
+    await _blueZCharacteristic.writeValue(value);
   }
-
-  // Stream<BluetoothCharacteristic> get _onCharacteristicChangedStream
 }
