@@ -49,12 +49,30 @@ class LinuxBluetoothCharacteristic extends BluetoothCharacteristic {
 
   @override
   Future<List<int>> read() async {
-    final value = await _blueZCharacteristic.readValue();
-    return value.toList();
+    final canRead =
+        _blueZCharacteristic.flags.contains(BlueZGattCharacteristicFlag.read);
+
+    if (canRead) {
+      final value = await _blueZCharacteristic.readValue();
+      return value.toList();
+    } else {
+      return [];
+    }
   }
 
   @override
   Future<Null> write(List<int> value, {bool withoutResponse = false}) async {
-    await _blueZCharacteristic.writeValue(value);
+    final canWrite = withoutResponse
+        ? _blueZCharacteristic.flags
+            .contains(BlueZGattCharacteristicFlag.writeWithoutResponse)
+        : _blueZCharacteristic.flags
+            .contains(BlueZGattCharacteristicFlag.write);
+
+    if (canWrite) {
+      await _blueZCharacteristic.writeValue(value);
+    } else {
+      //  throw "Cannot write characteristic";
+      print("Cannot write characteristic");
+    }
   }
 }

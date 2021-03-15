@@ -27,9 +27,9 @@ class LinuxBluetoothDevice extends BluetoothDevice {
           type: BluetoothDeviceType.unknown, // TODO
         ) {
     _bluezDevice.propertiesChangedStream.listen((event) {
-      _updateState();
+      _updateConnectionState();
     });
-    _updateState();
+    _updateConnectionState();
   }
 
   /// Establishes a connection to the Bluetooth Device.
@@ -52,7 +52,7 @@ class LinuxBluetoothDevice extends BluetoothDevice {
     _state.add(BluetoothDeviceState.connecting);
     await _bluezDevice.connect();
     timer?.cancel();
-    _updateState();
+    _updateConnectionState();
   }
 
   Future<void> disconnect() async {
@@ -61,7 +61,7 @@ class LinuxBluetoothDevice extends BluetoothDevice {
     }
     _state.add(BluetoothDeviceState.disconnecting);
     await _bluezDevice.disconnect();
-    _updateState();
+    _updateConnectionState();
   }
 
   Future<List<BluetoothService>> discoverServices() async {
@@ -104,7 +104,7 @@ class LinuxBluetoothDevice extends BluetoothDevice {
 
   Stream<BluetoothDeviceState> get state => _state;
 
-  void _updateState() {
+  void _updateConnectionState() {
     if (_bluezDevice.connected) {
       _state.add(BluetoothDeviceState.connected);
     } else {
