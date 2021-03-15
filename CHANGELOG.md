@@ -1,3 +1,6 @@
+## 0.8.1
+* Migrate to federated plugin.
+
 ## 0.8.0
 * Migrate the plugin to null safety.
 
