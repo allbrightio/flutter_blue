@@ -65,13 +65,11 @@ class LinuxBluetoothDevice extends BluetoothDevice {
   }
 
   Future<List<BluetoothService>> discoverServices() async {
-    /*
     final s = _state.value;
     if (s != BluetoothDeviceState.connected) {
       return Future.error(new Exception(
           'Cannot discoverServices while device is not connected. State == $s'));
     }
-    */
 
     _isDiscoveringServices.add(true);
 
