@@ -26,8 +26,7 @@ abstract class BluetoothCharacteristic {
     try {
       var cccd =
           descriptors.singleWhere((d) => d.uuid == BluetoothDescriptor.cccd);
-      return ((cccd.lastValue![0] & 0x01) > 0 ||
-          (cccd.lastValue![0] & 0x02) > 0);
+      return ((cccd.lastValue[0] & 0x01) > 0 || (cccd.lastValue[0] & 0x02) > 0);
     } catch (e) {
       return false;
     }

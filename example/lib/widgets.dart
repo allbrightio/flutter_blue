@@ -117,7 +117,7 @@ class ScanResultTile extends StatelessWidget {
 
 class ServiceTile extends StatelessWidget {
   final BluetoothService service;
-  final List<CharacteristicTile>? characteristicTiles;
+  final List<CharacteristicTile> characteristicTiles;
 
   const ServiceTile(
       {Key? key, required this.service, required this.characteristicTiles})
@@ -125,7 +125,7 @@ class ServiceTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (characteristicTiles!.length > 0) {
+    if (characteristicTiles.length > 0) {
       return ExpansionTile(
         title: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -137,7 +137,7 @@ class ServiceTile extends StatelessWidget {
                     color: Theme.of(context).textTheme.caption?.color))
           ],
         ),
-        children: characteristicTiles!,
+        children: characteristicTiles,
       );
     } else {
       return ListTile(
@@ -167,7 +167,7 @@ class CharacteristicTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return StreamBuilder<List<int>?>(
+    return StreamBuilder<List<int>>(
       stream: characteristic.value,
       initialData: characteristic.lastValue,
       builder: (c, snapshot) {
@@ -247,7 +247,7 @@ class DescriptorTile extends StatelessWidget {
                   ?.copyWith(color: Theme.of(context).textTheme.caption?.color))
         ],
       ),
-      subtitle: StreamBuilder<List<int>?>(
+      subtitle: StreamBuilder<List<int>>(
         stream: descriptor.value,
         initialData: descriptor.lastValue,
         builder: (c, snapshot) => Text(snapshot.data.toString()),

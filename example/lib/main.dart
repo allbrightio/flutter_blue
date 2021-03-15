@@ -152,9 +152,9 @@ class FindDevicesScreen extends StatelessWidget {
 }
 
 class DeviceScreen extends StatelessWidget {
-  const DeviceScreen({Key? key, this.device}) : super(key: key);
+  const DeviceScreen({Key? key, required this.device}) : super(key: key);
 
-  final BluetoothDevice? device;
+  final BluetoothDevice device;
 
   List<int> _getRandomBytes() {
     final math = Random();
@@ -205,21 +205,21 @@ class DeviceScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(device!.name),
+        title: Text(device.name),
         actions: <Widget>[
           StreamBuilder<BluetoothDeviceState>(
-            stream: device!.state,
+            stream: device.state,
             initialData: BluetoothDeviceState.connecting,
             builder: (c, snapshot) {
               VoidCallback? onPressed;
               String text;
               switch (snapshot.data) {
                 case BluetoothDeviceState.connected:
-                  onPressed = () => device!.disconnect();
+                  onPressed = () => device.disconnect();
                   text = 'DISCONNECT';
                   break;
                 case BluetoothDeviceState.disconnected:
-                  onPressed = () => device!.connect();
+                  onPressed = () => device.connect();
                   text = 'CONNECT';
                   break;
                 default:
@@ -244,7 +244,7 @@ class DeviceScreen extends StatelessWidget {
         child: Column(
           children: <Widget>[
             StreamBuilder<BluetoothDeviceState>(
-              stream: device!.state,
+              stream: device.state,
               initialData: BluetoothDeviceState.connecting,
               builder: (c, snapshot) => ListTile(
                 leading: (snapshot.data == BluetoothDeviceState.connected)
@@ -252,16 +252,16 @@ class DeviceScreen extends StatelessWidget {
                     : Icon(Icons.bluetooth_disabled),
                 title: Text(
                     'Device is ${snapshot.data.toString().split('.')[1]}.'),
-                subtitle: Text('${device!.id}'),
+                subtitle: Text('${device.id}'),
                 trailing: StreamBuilder<bool>(
-                  stream: device!.isDiscoveringServices,
+                  stream: device.isDiscoveringServices,
                   initialData: false,
                   builder: (c, snapshot) => IndexedStack(
                     index: snapshot.data! ? 1 : 0,
                     children: <Widget>[
                       IconButton(
                         icon: Icon(Icons.refresh),
-                        onPressed: () => device!.discoverServices(),
+                        onPressed: () => device.discoverServices(),
                       ),
                       IconButton(
                         icon: SizedBox(
@@ -279,19 +279,19 @@ class DeviceScreen extends StatelessWidget {
               ),
             ),
             StreamBuilder<int>(
-              stream: device!.mtu,
+              stream: device.mtu,
               initialData: 0,
               builder: (c, snapshot) => ListTile(
                 title: Text('MTU Size'),
                 subtitle: Text('${snapshot.data} bytes'),
                 trailing: IconButton(
                   icon: Icon(Icons.edit),
-                  onPressed: () => device!.requestMtu(223),
+                  onPressed: () => device.requestMtu(223),
                 ),
               ),
             ),
             StreamBuilder<List<BluetoothService>>(
-              stream: device!.services,
+              stream: device.services,
               initialData: [],
               builder: (c, snapshot) {
                 return Column(

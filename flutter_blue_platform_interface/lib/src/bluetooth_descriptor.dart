@@ -19,9 +19,9 @@ abstract class BluetoothDescriptor {
       required this.serviceUuid,
       required this.characteristicUuid});
 
-  Stream<List<int>?> get value;
+  Stream<List<int>> get value;
 
-  List<int>? get lastValue;
+  List<int> get lastValue;
 
   /// Retrieves the value of a specified descriptor
   Future<List<int>> read();
