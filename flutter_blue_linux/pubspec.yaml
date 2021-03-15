@@ -40,5 +40,3 @@ dependency_overrides:
     path: ../bluez.dart
   flutter_blue_platform_interface:
     path: ../flutter_blue_platform_interface
-  
-
