@@ -66,8 +66,8 @@ class MethodChannelBluetoothCharacteristic extends BluetoothCharacteristic {
   void _updateDescriptors(List<BluetoothDescriptor> newDescriptors) {
     for (var d in descriptors) {
       for (var newD in newDescriptors) {
-        if (d.uuid == newD.uuid) {
-          (d as MethodChannelBluetoothDescriptor).addValue(newD.lastValue);
+        if (d.uuid == newD.uuid && d is MethodChannelBluetoothDescriptor) {
+          d.addValue(newD.lastValue);
         }
       }
     }
