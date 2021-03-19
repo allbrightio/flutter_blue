@@ -13,7 +13,7 @@ class MethodChannelBluetoothService {
           deviceId: new DeviceIdentifier(p.remoteId),
           isPrimary: p.isPrimary,
           characteristics: p.characteristics
-              .map((c) => new MethodChannelBluetoothCharacteristic.fromProto(c))
+              .map((c) => MethodChannelBluetoothCharacteristic.fromProto(c))
               .toList(),
           includedServices:
               p.includedServices.map((s) => fromProto(s)).toList());

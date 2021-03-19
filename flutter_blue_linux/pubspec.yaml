@@ -1,6 +1,6 @@
 name: flutter_blue_linux
 description: Linux Implementation of flutter_blue
-version: 0.8.0
+version: 0.8.1
 homepage: https://github.com/pauldemarco/flutter_blue
 publish_to: none
 
@@ -22,7 +22,7 @@ dependencies:
   rxdart: ^0.26.0
   collection: ^1.14.13
   meta: ^1.2.3
-  flutter_blue_platform_interface: ^0.8.0
+  flutter_blue_platform_interface: ^0.8.1
   bluez:
     git:
       url: https://github.com/allbrightio/bluez.dart.git
@@ -40,5 +40,3 @@ dependency_overrides:
     path: ../bluez.dart
   flutter_blue_platform_interface:
     path: ../flutter_blue_platform_interface
-  
-

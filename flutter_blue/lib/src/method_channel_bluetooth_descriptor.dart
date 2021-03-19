@@ -8,10 +8,10 @@ import '../gen/flutterblue.pb.dart' as protos;
 import 'method_channel_flutter_blue.dart';
 
 class MethodChannelBluetoothDescriptor extends BluetoothDescriptor {
-  BehaviorSubject<List<int>?> _value;
-  Stream<List<int>?> get value => _value.stream;
+  BehaviorSubject<List<int>> _value;
+  Stream<List<int>> get value => _value.stream;
 
-  List<int>? get lastValue => _value.value;
+  List<int> get lastValue => _value.value ?? [];
 
   MethodChannelBluetoothDescriptor.fromProto(protos.BluetoothDescriptor p)
       : _value = BehaviorSubject.seeded(p.value),
@@ -80,7 +80,7 @@ class MethodChannelBluetoothDescriptor extends BluetoothDescriptor {
         .then((_) => null);
   }
 
-  void addValue(List<int>? value) {
+  void addValue(List<int> value) {
     _value.add(value);
   }
 
