@@ -1,6 +1,6 @@
-# example
+# flutter_blue_example
 
-A new Flutter project.
+Demonstrates how to use the flutter_blue plugin.
 
 ## Getting Started
 
