@@ -16,3 +16,6 @@ build/
 .flutter-plugins-dependencies
 
 bluez.dart
+
+
+**/Flutter/ephemeral/
