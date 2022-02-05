@@ -1,19 +1,27 @@
 name: flutter_blue_example
 description: Demonstrates how to use the flutter_blue plugin.
 publish_to: "none"
+version: 1.0.0+1
 
 environment:
-  sdk: '>=2.12.0 <3.0.0'
+  sdk: ">=2.12.0 <3.0.0"
 
 dependencies:
   flutter:
     sdk: flutter
+  flutter_blue:
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_blue:
-    path: ../
 
 flutter:
   uses-material-design: true
+
+dependency_overrides:
+  flutter_blue:
+    path: ../flutter_blue
+  flutter_blue_linux:
+    path: ../flutter_blue_linux
+  flutter_blue_platform_interface:
+    path: ../flutter_blue_platform_interface

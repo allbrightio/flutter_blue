@@ -2,7 +2,7 @@ name: flutter_blue
 description:
   Flutter plugin for connecting and communicating with Bluetooth Low Energy devices,
   on Android and iOS
-version: 0.8.0
+version: 0.8.1
 homepage: https://github.com/pauldemarco/flutter_blue
 
 environment:
@@ -22,6 +22,12 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
 
+dependency_overrides:
+  flutter_blue_platform_interface:
+    path: ../flutter_blue_platform_interface
+  flutter_blue_linux:
+    path: ../flutter_blue_linux
+
 flutter:
   plugin:
     platforms:
@@ -32,3 +38,5 @@ flutter:
         pluginClass: FlutterBluePlugin
       macos:
         pluginClass: FlutterBluePlugin
+      linux:
+        default_package: flutter_blue_linux

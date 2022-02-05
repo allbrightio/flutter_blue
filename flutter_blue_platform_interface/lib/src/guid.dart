@@ -2,7 +2,8 @@
 // All rights reserved. Use of this source code is governed by a
 // BSD-style license that can be found in the LICENSE file.
 
-part of flutter_blue;
+import 'package:collection/collection.dart';
+import 'package:convert/convert.dart';
 
 class Guid {
   final List<int> _bytes;
@@ -19,10 +20,6 @@ class Guid {
   Guid.empty() : this._internal(new List.filled(16, 0));
 
   static List<int> _fromMacString(String input) {
-    if (input == null) {
-      throw new ArgumentError("Input was null");
-    }
-
     input = _removeNonHexCharacters(input);
     final bytes = hex.decode(input);
 
@@ -34,10 +31,6 @@ class Guid {
   }
 
   static List<int> _fromString(String input) {
-    if (input == null) {
-      throw new ArgumentError("Input was null");
-    }
-
     input = _removeNonHexCharacters(input);
     final bytes = hex.decode(input);
 
@@ -50,10 +43,12 @@ class Guid {
 
   static String _removeNonHexCharacters(String sourceString) {
     return String.fromCharCodes(sourceString.runes.where((r) =>
-      (r >= 48 && r <= 57) // characters 0 to 9
-      || (r >= 65 && r <= 70)  // characters A to F
-      || (r >= 97 && r <= 102) // characters a to f
-    ));
+            (r >= 48 && r <= 57) // characters 0 to 9
+            ||
+            (r >= 65 && r <= 70) // characters A to F
+            ||
+            (r >= 97 && r <= 102) // characters a to f
+        ));
   }
 
   static int _calcHashCode(List<int> bytes) {

@@ -10,3 +10,12 @@ build/
 .atom/
 .idea/
 .vscode/
+
+.fvm/
+.flutter-plugins
+.flutter-plugins-dependencies
+
+bluez.dart
+
+
+**/Flutter/ephemeral/

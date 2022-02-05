@@ -1,0 +1,24 @@
+name: flutter_blue_platform_interface
+description:
+  Flutter plugin for connecting and communicating with Bluetooth Low Energy devices,
+  on Android and iOS
+version: 0.8.1
+homepage: https://github.com/pauldemarco/flutter_blue
+
+environment:
+  sdk: '>=2.12.0 <3.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  meta: ^1.3.0
+  convert: ^3.0.0
+  rxdart: ^0.26.0
+  plugin_platform_interface: ^2.0.0
+  collection: ^1.14.13
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  mockito: ^5.0.1
+  pedantic: ^1.10.0
